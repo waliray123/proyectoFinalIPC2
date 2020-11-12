@@ -5,3 +5,11 @@
   padding: 15px;
   margin: auto;
 }
+
+.formC-1{
+	width:500px;
+	padding:16px;
+	border-radius:10px;
+	margin:auto;
+	background-color:#ccc;
+}

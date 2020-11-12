@@ -30,7 +30,7 @@
                             <a class="nav-link" href="/proyectoFIPC2/login.jsp">Ingresar</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Link</a>
+                            <a class="nav-link" href="/proyectoFIPC2/setData.jsp">Subir XML</a>
                         </li>
                     </ul>
                 </div>
