@@ -26,7 +26,7 @@
                             <center>
                                 <h3 class="card-title">Invitacion de Asociacion</h3>
                                 <p class="card-text">Envias la invitacion a otro usuario a asociar una cuenta bancaria de su pertenencia</p>
-                                <a class="btn btn-light btn-outline-dark" href="/proyectoFIPC2/ManagerGUI/createAccount.jsp" title="Read more" ><img src="/proyectoFIPC2/images/solicitud.png" alt="x" width="25" height="25"/> Crear </a>
+                                <a class="btn btn-light btn-outline-dark" href="/proyectoFIPC2/ClientGUI/invitation.jsp" title="Read more" ><img src="/proyectoFIPC2/images/solicitud.png" alt="x" width="25" height="25"/> Crear </a>
                             </center>
                         </div>
                     </div>
@@ -35,9 +35,9 @@
                     <div class="card">
                         <div class="backC-2 borderR">
                             <center>
-                                <h3 class="card-title">Transaccion a Tercero</h3>
+                                <h3 class="card-title">Transferencia a Tercero</h3>
                                 <p class="card-text">Envias un deposito a de una cuenta propia a alguna asociada</p>
-                                <a class="btn btn-light btn-outline-dark" href="/proyectoFIPC2/ManagerGUI/registerClient.jsp" title="Read more" ><img src="/proyectoFIPC2/images/transaccionT.png" alt="x" width="25" height="25"/> Registrar</a>
+                                <a class="btn btn-light btn-outline-dark" href="/proyectoFIPC2/ClientGUI/transferThird.jsp" title="Read more" ><img src="/proyectoFIPC2/images/transaccionT.png" alt="x" width="25" height="25"/> Registrar</a>
                             </center>
                         </div>
                     </div>
@@ -48,7 +48,7 @@
                             <center>
                                 <h3 class="card-title">Transaccion a Cuenta Propia</h3>
                                 <p class="card-text">Envias un deposito de una cuentra propia a otra propia</p>
-                                <a class="btn btn-light btn-outline-dark" href="/proyectoFIPC2/ManagerGUI/updateClient.jsp" title="Read more" ><img src="/proyectoFIPC2/images/transaccion.png" alt="x" width="25" height="25"/> Actualizar</a>
+                                <a class="btn btn-light btn-outline-dark" href="/proyectoFIPC2/ClientGUI/transferOwn.jsp" title="Read more" ><img src="/proyectoFIPC2/images/transaccion.png" alt="x" width="25" height="25"/> Actualizar</a>
                             </center>
                         </div>
                     </div>
@@ -62,7 +62,7 @@
                             <center>
                                 <h3 class="card-title">Validar Asociaciones</h3>
                                 <p class="card-text">Validas las solicitudes de Asociacion a tus cuentas (aceptar/rechazar)</p>
-                                <a class="btn btn-light btn-outline-dark" href="/proyectoFIPC2/ManagerGUI/updateCashier.jsp" title="Read more" ><img src="/proyectoFIPC2/images/aceptar.png" alt="x" width="25" height="25"/> Actualizar</a>
+                                <a class="btn btn-light btn-outline-dark" href="/proyectoFIPC2/ClientGUI/validateInvitation.jsp" title="Read more" ><img src="/proyectoFIPC2/images/aceptar.png" alt="x" width="25" height="25"/> Actualizar</a>
                             </center>
                         </div>
                     </div>

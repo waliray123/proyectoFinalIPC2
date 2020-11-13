@@ -25,7 +25,7 @@
                 <div class="row register-form">
                     <div class="col-md-6">
                         <div class="form-group">
-                           Nombre*<input type="text" class="form-control" placeholder="Nombre *" value="" name="name"/>
+                            Nombre*<input type="text" class="form-control" placeholder="Nombre *" value="" name="name"/>
                         </div>
                         <div class="form-group">
                             DPI*<input type="text" class="form-control" placeholder="DPI *" value="" name="DPI"/>
@@ -63,7 +63,6 @@
                 </div>
             </div>
         </div>
-
     </div>  
 </body>
 </html>
