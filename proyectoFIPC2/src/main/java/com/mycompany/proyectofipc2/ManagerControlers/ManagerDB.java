@@ -53,10 +53,10 @@ public class ManagerDB {
     public Manager getManagerByCode(String codeManager){
         Manager managerR = null;
         try {            
-            ps = connection.prepareStatement("SELECT * FROM LAB_WORKER WHERE code = ?");
+            ps = connection.prepareStatement("SELECT * FROM MANAGER WHERE code = ?");
             ps.setString(1, codeManager);
             ResultSet res = ps.executeQuery();            
-            if (res.next()){
+            if(res.next()){
                 String code = res.getString(1);                
                 String name = res.getString(2);
                 String DPI = res.getString(3);
@@ -68,7 +68,7 @@ public class ManagerDB {
             }         
             res.close();
         } catch (Exception e) {
-            
+            System.out.println(e);
         }        
         return managerR;
     }

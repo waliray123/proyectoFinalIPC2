@@ -64,7 +64,7 @@ public class ClientDB {
             ps = connection.prepareStatement("SELECT * FROM CLIENT WHERE code = ?");
             ps.setString(1, codeClient);
             ResultSet res = ps.executeQuery();
-            if (res.next()) {
+            if(res.next()) {
                 String code = res.getString(1);
                 String name = res.getString(2);
                 String DPI = res.getString(3);

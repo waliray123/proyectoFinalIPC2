@@ -11,11 +11,13 @@ com/mycompany/proyectofipc2/Objects/Cashier.class
 com/mycompany/proyectofipc2/ClientControlers/ClientDB.class
 com/mycompany/proyectofipc2/getData/LoadXML.class
 com/mycompany/proyectofipc2/CashierControlers/CashierDB.class
+Servlets/Logout.class
 AccountControlers/AccountControl.class
 com/mycompany/proyectofipc2/TransactionControlers/TransactionControl.class
 com/mycompany/proyectofipc2/ClientControlers/ClientControl.class
 com/mycompany/proyectofipc2/Objects/Transaction.class
 com/mycompany/proyectofipc2/Utils/TypeTurnDB.class
 com/mycompany/proyectofipc2/Objects/Account.class
+Servlets/LoginServlet.class
 com/mycompany/proyectofipc2/ManagerControlers/ManagerControl.class
 com/mycompany/proyectofipc2/Utils/EncryptPassword.class

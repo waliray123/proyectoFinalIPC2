@@ -13,9 +13,11 @@
 /home/user-ubunto/Escritorio/proyectoFinal/proyectoFIPC2/src/main/java/com/mycompany/proyectofipc2/Objects/Client.java
 /home/user-ubunto/Escritorio/proyectoFinal/proyectoFIPC2/src/main/java/com/mycompany/proyectofipc2/TransactionControlers/TransactionDB.java
 /home/user-ubunto/Escritorio/proyectoFinal/proyectoFIPC2/src/main/java/com/mycompany/proyectofipc2/Objects/TypeTurn.java
+/home/user-ubunto/Escritorio/proyectoFinal/proyectoFIPC2/src/main/java/Servlets/Logout.java
 /home/user-ubunto/Escritorio/proyectoFinal/proyectoFIPC2/src/main/java/com/mycompany/proyectofipc2/ManagerControlers/ManagerControl.java
 /home/user-ubunto/Escritorio/proyectoFinal/proyectoFIPC2/src/main/java/AccountControlers/AccountControl.java
 /home/user-ubunto/Escritorio/proyectoFinal/proyectoFIPC2/src/main/java/com/mycompany/proyectofipc2/Utils/EncryptPassword.java
+/home/user-ubunto/Escritorio/proyectoFinal/proyectoFIPC2/src/main/java/Servlets/LoginServlet.java
 /home/user-ubunto/Escritorio/proyectoFinal/proyectoFIPC2/src/main/java/com/mycompany/proyectofipc2/Objects/Account.java
 /home/user-ubunto/Escritorio/proyectoFinal/proyectoFIPC2/src/main/java/com/mycompany/proyectofipc2/getData/servletSetData.java
 /home/user-ubunto/Escritorio/proyectoFinal/proyectoFIPC2/src/main/java/com/mycompany/proyectofipc2/Objects/Manager.java

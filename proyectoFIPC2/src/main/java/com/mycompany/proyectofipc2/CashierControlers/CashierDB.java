@@ -57,7 +57,7 @@ public class CashierDB {
             ps = connection.prepareStatement("SELECT * FROM CASHIER WHERE code = ?");
             ps.setString(1, codeCashier);
             ResultSet res = ps.executeQuery();            
-            if (res.next()){
+            if(res.next()){
                 String code = res.getString(1);                
                 String name = res.getString(2);
                 String DPI = res.getString(3);
