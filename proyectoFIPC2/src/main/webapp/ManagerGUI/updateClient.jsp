@@ -4,6 +4,7 @@
     Author     : user-ubunto
 --%>
 
+<%@page import="com.mycompany.proyectofipc2.ManagerControlers.ManagerControl"%>
 <%@page import="com.mycompany.proyectofipc2.ClientControlers.ClientDB"%>
 <%@page import="com.mycompany.proyectofipc2.Utils.EncryptPassword"%>
 <%@page import="com.mycompany.proyectofipc2.ClientControlers.ClientControl"%>
@@ -70,6 +71,8 @@
                         if(clientC.validateUpdateClient(codeClient, name, DPI, birth, address, gender, password)){
                         ClientDB clientDB = new ClientDB();
                         clientDB.updateClient(codeClient, name, DPI, birth, address, gender, password);
+                        ManagerControl managerC = new ManagerControl();
+                        managerC.createHistorial(request.getSession().getAttribute("code").toString(), "SE MODIFICO EL CLIENTE, con codigo: " + codeClient, "CLIENTE");
                         %>
                         <script>
                             alert("Se actualizo el cliente con codigo: <%=codeClient%>");

@@ -4,6 +4,11 @@
     Author     : user-ubunto
 --%>
 
+<%@page import="com.mycompany.proyectofipc2.Utils.TypeTurnDB"%>
+<%@page import="com.mycompany.proyectofipc2.Objects.TypeTurn"%>
+<%@page import="com.mycompany.proyectofipc2.Utils.DateHour"%>
+<%@page import="com.mycompany.proyectofipc2.Objects.Manager"%>
+<%@page import="com.mycompany.proyectofipc2.ManagerControlers.ManagerControl"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -14,7 +19,17 @@
         <title>Principal Gerente</title>
     </head>
     <body>
-        <%@include file="../headerLog.jsp"%>                
+        <%@include file="../headerLog.jsp"%>        
+        <%  ManagerControl managerC = new ManagerControl();
+            Manager manager = managerC.getManagerByCode(request.getSession().getAttribute("code").toString());
+            String codeTypeTurn = manager.getCodeTurn();
+            TypeTurnDB typeTurnDB = new TypeTurnDB();
+            TypeTurn typeTurn = typeTurnDB.getTypeTurnNameByCode(codeTypeTurn);
+            DateHour dateHour = new DateHour();
+            String isInHour = "";
+            if (dateHour.validateIsInTime(typeTurn) == false) {
+                isInHour = "disabled";
+            }%>        
     <br><center><h1>EL BILLETON</h1></center><br>
     <h2>Acciones del Gerente</h2>
     <section>
@@ -26,7 +41,7 @@
                             <center>
                                 <h3 class="card-title">Crear Cuenta</h3>
                                 <p class="card-text">Crear una cuenta que le pertecera a un cliente</p>
-                                <a class="btn btn-light btn-outline-dark" href="/proyectoFIPC2/ManagerGUI/createAccount.jsp" title="Read more" ><img src="/proyectoFIPC2/images/registro.png" alt="x" width="25" height="25"/> Crear </a>
+                                <a class="btn btn-light btn-outline-dark <%=isInHour%>" href="/proyectoFIPC2/ManagerGUI/createAccount.jsp" title="Read more" ><img src="/proyectoFIPC2/images/registro.png" alt="x" width="25" height="25"/> Crear </a>
                             </center>
                         </div>
                     </div>
@@ -37,7 +52,7 @@
                             <center>
                                 <h3 class="card-title">Registrar Cliente</h3>
                                 <p class="card-text">Registrar a un cliente en el sistema</p>
-                                <a class="btn btn-light btn-outline-dark" href="/proyectoFIPC2/ManagerGUI/registerClient.jsp" title="Read more" ><img src="/proyectoFIPC2/images/cuenta.png" alt="x" width="25" height="25"/> Registrar</a>
+                                <a class="btn btn-light btn-outline-dark <%=isInHour%>" <%=isInHour%> href="/proyectoFIPC2/ManagerGUI/registerClient.jsp" title="Read more" ><img src="/proyectoFIPC2/images/cuenta.png" alt="x" width="25" height="25"/> Registrar</a>
                             </center>
                         </div>
                     </div>
@@ -48,7 +63,7 @@
                             <center>
                                 <h3 class="card-title">Actualizar Cliente</h3>
                                 <p class="card-text">Actualizar la informacion de algun cliente registrado</p>
-                                <a class="btn btn-light btn-outline-dark" href="/proyectoFIPC2/ManagerGUI/updateClient.jsp" title="Read more" ><img src="/proyectoFIPC2/images/actualizar.png" alt="x" width="25" height="25"/> Actualizar</a>
+                                <a class="btn btn-light btn-outline-dark <%=isInHour%>" href="/proyectoFIPC2/ManagerGUI/updateClient.jsp" title="Read more" ><img src="/proyectoFIPC2/images/actualizar.png" alt="x" width="25" height="25"/> Actualizar</a>
                             </center>
                         </div>
                     </div>
@@ -62,7 +77,7 @@
                             <center>
                                 <h3 class="card-title">Actualizar Cajero</h3>
                                 <p class="card-text">Actualizar la infomacion de algun cajero registrado</p>
-                                <a class="btn btn-light btn-outline-dark" href="/proyectoFIPC2/ManagerGUI/updateCashier.jsp" title="Read more" ><img src="/proyectoFIPC2/images/actualizar.png" alt="x" width="25" height="25"/> Actualizar</a>
+                                <a class="btn btn-light btn-outline-dark <%=isInHour%>" href="/proyectoFIPC2/ManagerGUI/updateCashier.jsp" title="Read more" ><img src="/proyectoFIPC2/images/actualizar.png" alt="x" width="25" height="25"/> Actualizar</a>
                             </center>
                         </div>
                     </div>
@@ -73,7 +88,18 @@
                             <center>
                                 <h3 class="card-title">Actualizar Propio Gerente</h3>
                                 <p class="card-text">Actualizar su informacion</p>
-                                <a class="btn btn-light btn-outline-dark" href="/proyectoFIPC2/ManagerGUI/updateManager.jsp" title="Read more" ><img src="/proyectoFIPC2/images/actualizar.png" alt="x" width="25" height="25"/> Actualizar</a>
+                                <a class="btn btn-light btn-outline-dark <%=isInHour%>" href="/proyectoFIPC2/ManagerGUI/updateManager.jsp" title="Read more" ><img src="/proyectoFIPC2/images/actualizar.png" alt="x" width="25" height="25"/> Actualizar</a>
+                            </center>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 col-xl-4">
+                    <div class="card">
+                        <div class="backC-2 borderR">
+                            <center>
+                                <h3 class="card-title">Actualizar Limite</h3>
+                                <p class="card-text">Actualizar el limite utilizado en los reportes</p>
+                                <a class="btn btn-light btn-outline-dark" href="/proyectoFIPC2/ManagerGUI/updateLimit.jsp" title="Read more" ><img src="/proyectoFIPC2/images/actualizar.png" alt="x" width="25" height="25"/> Actualizar</a>
                             </center>
                         </div>
                     </div>

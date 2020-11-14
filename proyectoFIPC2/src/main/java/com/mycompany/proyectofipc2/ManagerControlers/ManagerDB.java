@@ -93,4 +93,60 @@ public class ManagerDB {
         }        
         return managerR;
     }
+    
+    public void setNewHistorial(String codeManager, String dateChange, String description, String type){
+        try {
+            ps = connection.prepareStatement("INSERT INTO MANAGERHISTORY (MANAGER_code,dateChange,descriptionChange,typeChange)VALUES (?,?,?,?)");
+            ps.setString(1, codeManager);
+            ps.setString(2, dateChange);                        
+            ps.setString(3, description);
+            ps.setString(4, type);
+                        
+            ps.executeUpdate();//action done
+            
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+    }
+    
+    public double getLimits(){
+        double limitMoney = -1; 
+        try {            
+            ps = connection.prepareStatement("SELECT * FROM LIMITS");
+            ResultSet res = ps.executeQuery();            
+            if(res.next()){
+                limitMoney = res.getDouble(3);                      
+            }         
+            res.close();
+        } catch (Exception e) {
+            System.out.println(e);
+        }        
+        return limitMoney;
+    }
+    
+    public void setNewLimit(String code, String name, Double limitMoney){
+        try {
+            ps = connection.prepareStatement("INSERT INTO LIMITS VALUES (?,?,?)");
+            ps.setString(1, code);
+            ps.setString(2, name);                        
+            ps.setDouble(3, limitMoney);
+                        
+            ps.executeUpdate();//action done
+            
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+    }
+    
+    public void updateLimit(Double limitMoney){
+        try {
+            ps = connection.prepareStatement("UPDATE LIMITS SET limitMoney = ? WHERE code = 1;");                     
+            ps.setDouble(1, limitMoney);
+                        
+            ps.executeUpdate();//action done
+            
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+    }
 }

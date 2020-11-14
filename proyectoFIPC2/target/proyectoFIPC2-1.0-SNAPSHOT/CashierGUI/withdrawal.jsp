@@ -4,6 +4,7 @@
     Author     : user-ubunto
 --%>
 
+<%@page import="com.mycompany.proyectofipc2.TransactionControlers.TransactionControl"%>
 <%@page import="com.mycompany.proyectofipc2.ClientControlers.ClientControl"%>
 <%@page import="AccountControlers.AccountControl"%>
 <%@page import="com.mycompany.proyectofipc2.Objects.Client"%>
@@ -39,6 +40,8 @@
                     Double ammount = Double.parseDouble(request.getParameter("ammountA"));
                     if (ammount <= account.getCredit()) {
                         accountC.setWithdraw(account.getCode(), ammount);
+                        TransactionControl transactionC = new TransactionControl();
+                    transactionC.setTransaction("DEBITO", request.getSession().getAttribute("code").toString(), account.getCode(), String.valueOf(ammount));
         %>
         <script>
             alert("Se realizo el retiro con exito de: Q.<%=String.valueOf(ammount)%> a la cuenta No. <%=account.getCode()%>");

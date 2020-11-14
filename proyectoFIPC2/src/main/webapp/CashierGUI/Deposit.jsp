@@ -4,6 +4,7 @@
     Author     : user-ubunto
 --%>
 
+<%@page import="com.mycompany.proyectofipc2.TransactionControlers.TransactionControl"%>
 <%@page import="com.mycompany.proyectofipc2.ClientControlers.ClientControl"%>
 <%@page import="com.mycompany.proyectofipc2.Objects.Client"%>
 <%@page import="com.mycompany.proyectofipc2.Objects.Account"%>
@@ -35,7 +36,10 @@
                 account = accountC.getAccountByCode(request.getParameter("accountCode"));
                 if (account != null) {
                     Double ammount = Double.parseDouble(request.getParameter("ammountA"));
-                    accountC.setDeposit(account.getCode(), ammount);  %>
+                    accountC.setDeposit(account.getCode(), ammount);  
+                    TransactionControl transactionC = new TransactionControl();
+                    transactionC.setTransaction("CREDITO", request.getSession().getAttribute("code").toString(), account.getCode(), String.valueOf(ammount));
+                    %>
                     <script>
                         alert("Se realizo el deposito con exito de: Q.<%=String.valueOf(ammount)%> a la cuenta No. <%=account.getCode()%>");
                     </script>  

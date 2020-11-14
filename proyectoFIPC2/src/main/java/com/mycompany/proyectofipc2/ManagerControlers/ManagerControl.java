@@ -6,6 +6,7 @@
 package com.mycompany.proyectofipc2.ManagerControlers;
 
 import com.mycompany.proyectofipc2.Objects.Manager;
+import com.mycompany.proyectofipc2.Utils.DateHour;
 
 /**
  *
@@ -46,5 +47,12 @@ public class ManagerControl {
     public Manager getManagerByCode(String code){
         ManagerDB managerDB = new ManagerDB();
         return managerDB.getManagerByCode(code);
+    }
+    
+    public void createHistorial(String codeManager, String description, String type){
+        DateHour dateHour = new DateHour();
+        String dateChange = dateHour.getDateToday();
+        ManagerDB managerDB = new ManagerDB();
+        managerDB.setNewHistorial(codeManager, dateChange, description, type);
     }
 }

@@ -4,6 +4,7 @@
     Author     : user-ubunto
 --%>
 
+<%@page import="com.mycompany.proyectofipc2.ManagerControlers.ManagerControl"%>
 <%@page import="com.mycompany.proyectofipc2.CashierControlers.CashierDB"%>
 <%@page import="com.mycompany.proyectofipc2.Utils.TypeTurnDB"%>
 <%@page import="com.mycompany.proyectofipc2.Objects.Cashier"%>
@@ -80,7 +81,9 @@
                     CashierControl cashierC = new CashierControl();
                     if (cashierC.validateUpdateCashier(codeCashier, name, codeTurn, DPI, address, gender, password)) {
                         CashierDB cashierDB = new CashierDB();
-                        cashierDB.updateCashier(codeCashier, name, codeTurn, DPI, address, gender, password);%>
+                        cashierDB.updateCashier(codeCashier, name, codeTurn, DPI, address, gender, password);
+                        ManagerControl managerC = new ManagerControl();
+                        managerC.createHistorial(request.getSession().getAttribute("code").toString(), "SE MODIFICO EL CAJERO, con codigo:" + codeCashier, "CAJERO");%>
                         <script>
                             alert("Se actualizo el cajero con codigo: <%=codeCashier%>");
                         </script>

@@ -4,6 +4,7 @@
     Author     : user-ubunto
 --%>
 
+<%@page import="com.mycompany.proyectofipc2.TransactionControlers.TransactionControl"%>
 <%@page import="AccountControlers.AccountControl"%>
 <%@page import="AccountControlers.AccountDB"%>
 <%@page import="java.util.ArrayList"%>
@@ -53,7 +54,14 @@
                     if (accountW.getCredit()>= amount) {
                         AccountControl accountC = new AccountControl();
                         accountC.clientTransfer(codeAccount1, codeAccount2, amount);
-                    }else{%>
+                        TransactionControl transactionC = new TransactionControl();
+                        transactionC.setTransaction("CREDITO", "101", accountD.getCode(), String.valueOf(amount));
+                        transactionC.setTransaction("DEBITO", "101", accountW.getCode(), String.valueOf(amount));
+                    %>
+                    <script>
+                        alert("Deposito realizado");
+                    </script> 
+                    <%}else{%>
                     <script>
                         alert("No puedes retirar mas de lo que tienes");
                     </script>

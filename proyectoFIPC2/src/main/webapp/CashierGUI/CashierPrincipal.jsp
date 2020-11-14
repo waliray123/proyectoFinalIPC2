@@ -4,6 +4,11 @@
     Author     : user-ubunto
 --%>
 
+<%@page import="com.mycompany.proyectofipc2.Objects.Cashier"%>
+<%@page import="com.mycompany.proyectofipc2.CashierControlers.CashierControl"%>
+<%@page import="com.mycompany.proyectofipc2.Utils.DateHour"%>
+<%@page import="com.mycompany.proyectofipc2.Objects.TypeTurn"%>
+<%@page import="com.mycompany.proyectofipc2.Utils.TypeTurnDB"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -14,7 +19,17 @@
         <title>Principal Cajero</title>
     </head>
     <body>
-        <%@include file="../headerLog.jsp"%>                
+        <%@include file="../headerLog.jsp"%>    
+        <%  CashierControl managerC = new CashierControl();
+        Cashier cashier = managerC.getCashierByCode(request.getSession().getAttribute("code").toString());
+        String codeTypeTurn = cashier.getCodeTurn();
+        TypeTurnDB typeTurnDB = new TypeTurnDB();
+        TypeTurn  typeTurn = typeTurnDB.getTypeTurnNameByCode(codeTypeTurn);
+        DateHour dateHour = new DateHour();
+        String isInHour = "";
+        if (dateHour.validateIsInTime(typeTurn) == false) {
+            isInHour = "disabled";
+        }%>
     <br><center><h1>EL BILLETON</h1></center><br>
     <h2>Acciones del Cajero</h2>
     <section>
@@ -26,7 +41,7 @@
                             <center>
                                 <h3 class="card-title">Deposito</h3>
                                 <p class="card-text">Un cliente deposita en su cuenta bancaria</p>
-                                <a class="btn btn-light btn-outline-dark" href="/proyectoFIPC2/CashierGUI/Deposit.jsp" title="Read more" ><img src="/proyectoFIPC2/images/deposito.png" alt="x" width="25" height="25"/> Depositar </a>
+                                <a class="btn btn-light btn-outline-dark <%=isInHour%>" href="/proyectoFIPC2/CashierGUI/Deposit.jsp" title="Read more" ><img src="/proyectoFIPC2/images/deposito.png" alt="x" width="25" height="25"/> Depositar </a>
                             </center>
                         </div>
                     </div>
@@ -37,7 +52,7 @@
                             <center>
                                 <h3 class="card-title">Retiro</h3>
                                 <p class="card-text">Un cliente retira de su cuenta bancaria</p>
-                                <a class="btn btn-light btn-outline-dark" href="/proyectoFIPC2/CashierGUI/withdrawal.jsp" title="Read more" ><img src="/proyectoFIPC2/images/retiro.png" alt="x" width="25" height="25"/> Retirar</a>
+                                <a class="btn btn-light btn-outline-dark <%=isInHour%>" href="/proyectoFIPC2/CashierGUI/withdrawal.jsp" title="Read more" ><img src="/proyectoFIPC2/images/retiro.png" alt="x" width="25" height="25"/> Retirar</a>
                             </center>
                         </div>
                     </div>

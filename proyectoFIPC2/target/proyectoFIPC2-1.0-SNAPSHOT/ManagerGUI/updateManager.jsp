@@ -77,7 +77,9 @@
                     ManagerControl managerC = new ManagerControl();
                     if (managerC.validateUpdateManager(codeManager, name, codeTurn, DPI, address, gender, password)) {
                         ManagerDB managerDB = new ManagerDB();
-                        managerDB.updateManager(codeManager, name, codeTurn, DPI, address, gender, password);%>
+                        managerDB.updateManager(codeManager, name, codeTurn, DPI, address, gender, password);
+                        managerC.createHistorial(request.getSession().getAttribute("code").toString(), "SE MODIFICO EL PROPIO GERENTE", "GERENTE");
+        %>
                         <script>
                             alert("Se actualizo el gerente con codigo: <%=codeManager%>");
                         </script>

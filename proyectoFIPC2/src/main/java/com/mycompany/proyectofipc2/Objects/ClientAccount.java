@@ -13,16 +13,27 @@ public class ClientAccount {
     private String code;
     private String attempts;
     private Boolean isAssociated;
+    private Boolean isInviting;
     private String codeAccount;
     private String codeClient;    
 
-    public ClientAccount(String code,String attempts, Boolean isAssociated, String codeAccount, String codeClient) {
+    public ClientAccount(String code,String attempts, Boolean isAssociated,Boolean isInviting, String codeAccount, String codeClient) {
+        this.code = code;
         this.attempts = attempts;
         this.isAssociated = isAssociated;
+        this.isInviting = isInviting;
         this.codeAccount = codeAccount;
         this.codeClient = codeClient;
     }
 
+    public String getCode() {
+        return code;
+    }
+
+    public Boolean getIsInviting() {
+        return isInviting;
+    }
+    
     public String getAttempts() {
         return attempts;
     }

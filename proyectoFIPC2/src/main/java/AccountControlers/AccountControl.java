@@ -7,6 +7,7 @@ package AccountControlers;
 
 import com.mycompany.proyectofipc2.Objects.Account;
 import com.mycompany.proyectofipc2.Objects.ClientAccount;
+import java.util.ArrayList;
 
 
 
@@ -65,6 +66,11 @@ public class AccountControl {
         return codeAccount;
     }
     
+    public ArrayList<Account> getAccountByCodeClient(String codeClient){
+        AccountDB accountDB = new AccountDB();
+        return accountDB.getAccountsByCodeClient(codeClient);
+    }
+    
     public ClientAccount getInvitation(String codeClient,String codeAccount){
         AccountDB accountDB = new AccountDB();
         ClientAccount clientAccount = accountDB.getRelationClientAccount(codeClient, codeAccount);
@@ -91,10 +97,33 @@ public class AccountControl {
     
     public void setNewInvitation(String codeClient, String codeAccount){
         AccountDB accountDB = new AccountDB();
-        accountDB.insertNewClientAccount(getLastCodeClientAccount(), "0", false, codeAccount, codeClient);
+        accountDB.insertNewClientAccount(getLastCodeClientAccount(), "0", false,false, codeAccount, codeClient);
     }
     
-    public void sendInvitation(String codeClientAccount){
-        
+    public void sendInvitation(String codeClientAccount, String attempts){
+        AccountDB accountDB = new AccountDB();
+        int attemptsI = Integer.parseInt(attempts);
+        attemptsI +=1;
+        accountDB.sendInvitation(codeClientAccount, String.valueOf(attemptsI), true);
+    }
+    
+    public void acceptInvitation(String codeClientAccount){
+        AccountDB accountDB = new AccountDB();
+        accountDB.acceptInvitation(codeClientAccount);
+    }
+    
+    public void declineInvitation(String codeClientAccount, String attempts){
+        AccountDB accountDB = new AccountDB();
+        accountDB.sendInvitation(codeClientAccount, attempts,false);
+    }
+    
+    public ArrayList<ClientAccount> getAllInvitationsByClient(String codeClient){
+        AccountDB accountDB = new AccountDB();
+        return accountDB.getAllInvitations(codeClient);
+    }
+    
+    public ArrayList<ClientAccount> getAllAsoociationsByClient(String codeClient){
+        AccountDB accountDB = new AccountDB();
+        return accountDB.getAllRelationsByClient(codeClient, true);
     }
 }

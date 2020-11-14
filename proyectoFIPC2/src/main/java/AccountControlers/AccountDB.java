@@ -131,9 +131,33 @@ public class AccountDB {
                 String code = res.getString(1);   
                 String attempts = res.getString(2);
                 Boolean isAssociated1 = res.getBoolean(3);
-                String codeAccount = res.getString(4);
-                String codeClient1 = res.getString(5);                        
-                ClientAccount clientAccount = new ClientAccount(code,attempts, isAssociated1, codeAccount,codeClient1);
+                Boolean isInviting = res.getBoolean(4);
+                String codeAccount = res.getString(5);
+                String codeClient1 = res.getString(6);                        
+                ClientAccount clientAccount = new ClientAccount(code,attempts, isAssociated1,isInviting, codeAccount,codeClient1);
+                clientsAccounts.add(clientAccount);
+            }
+            res.close();
+        } catch (Exception e) {
+
+        }
+        return clientsAccounts;
+    }
+    
+    public ArrayList<ClientAccount> getAllInvitations(String codeClient){
+        ArrayList<ClientAccount> clientsAccounts = new ArrayList();
+        try {
+            ps = connection.prepareStatement("SELECT * FROM (CLIENT_ACCOUNT_ASSOCIATED AS CA, ACCOUNT AS A) WHERE CA.isInviting = 1 AND A.CLIENT_code =? AND CA.ACCOUNT_code = A.code AND CA.isAssociated = 0;");
+            ps.setString(1, codeClient);            
+            ResultSet res = ps.executeQuery();
+            while(res.next()) {
+                String code = res.getString(1);   
+                String attempts = res.getString(2);
+                Boolean isAssociated1 = res.getBoolean(3);
+                Boolean isInviting = res.getBoolean(4);
+                String codeAccount = res.getString(5);
+                String codeClient1 = res.getString(6);                        
+                ClientAccount clientAccount = new ClientAccount(code,attempts, isAssociated1,isInviting, codeAccount,codeClient1);
                 clientsAccounts.add(clientAccount);
             }
             res.close();
@@ -154,9 +178,10 @@ public class AccountDB {
                 String code = res.getString(1);   
                 String attempts = res.getString(2);
                 Boolean isAssociated1 = res.getBoolean(3);
-                String codeAccount1 = res.getString(4);
-                String codeClient1 = res.getString(5);                        
-                clientAccount = new ClientAccount(code,attempts, isAssociated1, codeAccount1,codeClient1);                
+                Boolean isInviting = res.getBoolean(4);
+                String codeAccount1 = res.getString(5);
+                String codeClient1 = res.getString(6);                        
+                clientAccount = new ClientAccount(code,attempts, isAssociated1,isInviting, codeAccount1,codeClient1);                
             }
             res.close();
         } catch (Exception e) {
@@ -165,14 +190,37 @@ public class AccountDB {
         return clientAccount;
     }
     
-    public void insertNewClientAccount(String code, String attempts,boolean isAssociated, String accountCode,String clientCode) {        
+    public ClientAccount getRelationClientAccountByCode(String code){
+        ClientAccount clientAccount = null;
         try {
-            ps = connection.prepareStatement("INSERT INTO CLIENT_ACCOUNT_ASSOCIATED VALUES (?,?,?,?,?);");   
+            ps = connection.prepareStatement("SELECT * FROM CLIENT_ACCOUNT_ASSOCIATED WHERE code = ?");
+            ps.setString(1, code);
+            ResultSet res = ps.executeQuery();
+            if(res.next()) {
+                String code1 = res.getString(1);   
+                String attempts = res.getString(2);
+                Boolean isAssociated1 = res.getBoolean(3);
+                Boolean isInviting = res.getBoolean(4);
+                String codeAccount1 = res.getString(5);
+                String codeClient1 = res.getString(6);                        
+                clientAccount = new ClientAccount(code1,attempts, isAssociated1,isInviting, codeAccount1,codeClient1);                
+            }
+            res.close();
+        } catch (Exception e) {
+
+        }
+        return clientAccount;
+    }
+    
+    public void insertNewClientAccount(String code, String attempts,boolean isAssociated,boolean isInviting, String accountCode,String clientCode) {        
+        try {
+            ps = connection.prepareStatement("INSERT INTO CLIENT_ACCOUNT_ASSOCIATED VALUES (?,?,?,?,?,?)");   
             ps.setString(1, code);
             ps.setString(2, attempts);
             ps.setBoolean(3, isAssociated);
-            ps.setString(4, accountCode);
-            ps.setString(5, clientCode);
+            ps.setBoolean(4, isInviting);
+            ps.setString(5, accountCode);
+            ps.setString(6, clientCode);
             
             ps.executeUpdate();//action done
 
@@ -181,12 +229,25 @@ public class AccountDB {
         }
     }
     
-    public void updateClientAccount(String code, String attempts, boolean isAssociated) {        
+    public void sendInvitation(String code, String attempts, boolean isInviting) {        
         try {
-            ps = connection.prepareStatement("UPDATE CLIENT_ACCOUNT_ASSOCIATED SET attempts = ?, isAssociated = ? WHERE code = ?;");   
+            ps = connection.prepareStatement("UPDATE CLIENT_ACCOUNT_ASSOCIATED SET attempts = ?, isInviting = ? WHERE code = ?;");   
             ps.setString(1, attempts);
-            ps.setBoolean(2, isAssociated);
+            ps.setBoolean(2, isInviting);
             ps.setString(3, code);
+            
+            ps.executeUpdate();//action done
+
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+    }
+    
+    public void acceptInvitation(String code) {        
+        try {
+            ps = connection.prepareStatement("UPDATE CLIENT_ACCOUNT_ASSOCIATED SET isAssociated = ? WHERE code = ?;");               
+            ps.setBoolean(1, true);
+            ps.setString(2, code);
             
             ps.executeUpdate();//action done
 
