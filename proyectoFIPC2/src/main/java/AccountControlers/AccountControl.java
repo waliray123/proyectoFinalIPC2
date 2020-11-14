@@ -6,6 +6,7 @@
 package AccountControlers;
 
 import com.mycompany.proyectofipc2.Objects.Account;
+import com.mycompany.proyectofipc2.Objects.ClientAccount;
 
 
 
@@ -43,6 +44,16 @@ public class AccountControl {
         accountDB.updateCreditByCode(codeAccount, creditToSet);
     }
     
+    public void clientTransfer(String codeAccountW,String codeAccountD, Double ammount){
+        AccountDB accountDB = new AccountDB();
+        Account accountW = getAccountByCode(codeAccountW);
+        Account accountD = getAccountByCode(codeAccountD);        
+        Double creditToSetW = accountW.getCredit() - ammount;
+        Double creditToSetD = accountD.getCredit() + ammount;        
+        accountDB.updateCreditByCode(codeAccountW, creditToSetW);
+        accountDB.updateCreditByCode(codeAccountD, creditToSetD);
+    }
+    
     public Account getAccountByCode(String code){
         AccountDB accountDB = new AccountDB();
         return accountDB.getAccountByCode(code);
@@ -52,5 +63,38 @@ public class AccountControl {
         AccountDB accountDB = new AccountDB();
         String codeAccount = String.valueOf(accountDB.getLastCodeAccount());
         return codeAccount;
+    }
+    
+    public ClientAccount getInvitation(String codeClient,String codeAccount){
+        AccountDB accountDB = new AccountDB();
+        ClientAccount clientAccount = accountDB.getRelationClientAccount(codeClient, codeAccount);
+        if (clientAccount == null) {
+            setNewInvitation(codeClient, codeAccount);
+            clientAccount = getInvitation(codeClient,codeAccount);
+        }        
+        return clientAccount; 
+    }
+    
+    public String getLastCodeClientAccount(){
+        AccountDB accountDB = new AccountDB();
+        String codeAccount  = "";
+        try{
+            codeAccount = String.valueOf(accountDB.getLastCodeClientAccount());
+        }catch(Exception e){
+            
+        }        
+        if (codeAccount.equals("")) {
+            codeAccount = "0";
+        }
+        return codeAccount;
+    }
+    
+    public void setNewInvitation(String codeClient, String codeAccount){
+        AccountDB accountDB = new AccountDB();
+        accountDB.insertNewClientAccount(getLastCodeClientAccount(), "0", false, codeAccount, codeClient);
+    }
+    
+    public void sendInvitation(String codeClientAccount){
+        
     }
 }

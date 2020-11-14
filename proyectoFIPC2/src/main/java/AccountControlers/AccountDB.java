@@ -7,6 +7,7 @@ package AccountControlers;
 
 import com.mycompany.proyectofipc2.Objects.Account;
 import com.mycompany.proyectofipc2.Objects.Client;
+import com.mycompany.proyectofipc2.Objects.ClientAccount;
 import com.mycompany.proyectofipc2.Utils.ConnectionDB;
 import com.mycompany.proyectofipc2.Utils.EncryptPassword;
 import java.io.File;
@@ -108,6 +109,96 @@ public class AccountDB {
         int code = 0;
         try {
             ps = connection.prepareStatement("SELECT code FROM ACCOUNT ORDER BY code DESC;");            
+            ResultSet res = ps.executeQuery();
+            if(res.next()) {
+                code = res.getInt(1)+1;                
+            }
+            res.close();
+        } catch (Exception e) {
+
+        }
+        return code;
+    }
+    
+    public ArrayList<ClientAccount> getAllRelationsByClient(String codeClient, boolean isAssociated){
+        ArrayList<ClientAccount> clientsAccounts = new ArrayList();
+        try {
+            ps = connection.prepareStatement("SELECT * FROM CLIENT_ACCOUNT_ASSOCIATED WHERE CLIENT_code_associate = ? AND isAssociated = ?");
+            ps.setString(1, codeClient);
+            ps.setBoolean(2, isAssociated);
+            ResultSet res = ps.executeQuery();
+            while(res.next()) {
+                String code = res.getString(1);   
+                String attempts = res.getString(2);
+                Boolean isAssociated1 = res.getBoolean(3);
+                String codeAccount = res.getString(4);
+                String codeClient1 = res.getString(5);                        
+                ClientAccount clientAccount = new ClientAccount(code,attempts, isAssociated1, codeAccount,codeClient1);
+                clientsAccounts.add(clientAccount);
+            }
+            res.close();
+        } catch (Exception e) {
+
+        }
+        return clientsAccounts;
+    }
+    
+    public ClientAccount getRelationClientAccount(String codeClient, String codeAccount){
+        ClientAccount clientAccount = null;
+        try {
+            ps = connection.prepareStatement("SELECT * FROM CLIENT_ACCOUNT_ASSOCIATED WHERE ACCOUNT_code = ? AND CLIENT_code_associate = ?");
+            ps.setString(1, codeAccount);
+            ps.setString(2, codeClient);
+            ResultSet res = ps.executeQuery();
+            if(res.next()) {
+                String code = res.getString(1);   
+                String attempts = res.getString(2);
+                Boolean isAssociated1 = res.getBoolean(3);
+                String codeAccount1 = res.getString(4);
+                String codeClient1 = res.getString(5);                        
+                clientAccount = new ClientAccount(code,attempts, isAssociated1, codeAccount1,codeClient1);                
+            }
+            res.close();
+        } catch (Exception e) {
+
+        }
+        return clientAccount;
+    }
+    
+    public void insertNewClientAccount(String code, String attempts,boolean isAssociated, String accountCode,String clientCode) {        
+        try {
+            ps = connection.prepareStatement("INSERT INTO CLIENT_ACCOUNT_ASSOCIATED VALUES (?,?,?,?,?);");   
+            ps.setString(1, code);
+            ps.setString(2, attempts);
+            ps.setBoolean(3, isAssociated);
+            ps.setString(4, accountCode);
+            ps.setString(5, clientCode);
+            
+            ps.executeUpdate();//action done
+
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+    }
+    
+    public void updateClientAccount(String code, String attempts, boolean isAssociated) {        
+        try {
+            ps = connection.prepareStatement("UPDATE CLIENT_ACCOUNT_ASSOCIATED SET attempts = ?, isAssociated = ? WHERE code = ?;");   
+            ps.setString(1, attempts);
+            ps.setBoolean(2, isAssociated);
+            ps.setString(3, code);
+            
+            ps.executeUpdate();//action done
+
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+    }
+    
+    public int getLastCodeClientAccount() {
+        int code = 0;
+        try {
+            ps = connection.prepareStatement("SELECT code FROM CLIENT_ACCOUNT_ASSOCIATED ORDER BY code DESC;");            
             ResultSet res = ps.executeQuery();
             if(res.next()) {
                 code = res.getInt(1)+1;                

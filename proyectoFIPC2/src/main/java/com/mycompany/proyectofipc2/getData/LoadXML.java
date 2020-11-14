@@ -14,6 +14,8 @@ import com.mycompany.proyectofipc2.ClientControlers.ClientDB;
 import com.mycompany.proyectofipc2.ManagerControlers.ManagerControl;
 import com.mycompany.proyectofipc2.ManagerControlers.ManagerDB;
 import com.mycompany.proyectofipc2.Objects.TypeTurn;
+import com.mycompany.proyectofipc2.TransactionControlers.TransactionControl;
+import com.mycompany.proyectofipc2.TransactionControlers.TransactionDB;
 import com.mycompany.proyectofipc2.Utils.TypeTurnDB;
 import java.io.File;
 import javax.swing.JOptionPane;
@@ -44,11 +46,13 @@ public class LoadXML {
             NodeList listManagers = document.getElementsByTagName("GERENTE");
             NodeList listCashiers = document.getElementsByTagName("CAJERO");
             NodeList listClients = document.getElementsByTagName("CLIENTE");
+            NodeList listTransactions = document.getElementsByTagName("TRANSACCION");
 
             //inserts the nodes in order
             insertManagers(listManagers);
             insertCashiers(listCashiers);
             insertClients(listClients, pathFolder);
+            insertTransactions(listTransactions);
             //client - accounts
             //transaction
 
@@ -165,6 +169,31 @@ public class LoadXML {
                     Double credit = Double.parseDouble(creditStr);
                     if (accountControl.validateAccount(code, dateCreated, credit, codeClient)) {
                         accountDB.insertNewAccount(code, dateCreated, credit, codeClient);
+                    }
+                }
+            } catch (Exception e) {
+                System.out.println(e);
+            }
+        }
+    }
+    
+    private void insertTransactions(NodeList listTransactions) {
+        TransactionDB transactionDB = new TransactionDB();
+        TransactionControl transactionControl = new TransactionControl();
+        for (int i = 0; i < listTransactions.getLength(); i++) {
+            try {
+                Node nodo = listTransactions.item(i);
+                if (nodo.getNodeType() == Node.ELEMENT_NODE) {
+                    Element element = (Element) nodo;
+                    String code = element.getElementsByTagName("CODIGO").item(0).getTextContent();
+                    String dateTransaction = element.getElementsByTagName("FECHA").item(0).getTextContent();
+                    String hourTransaction = element.getElementsByTagName("HORA").item(0).getTextContent();
+                    String type = element.getElementsByTagName("TIPO").item(0).getTextContent();                
+                    String amount = element.getElementsByTagName("MONTO").item(0).getTextContent();                
+                    String codeCashier = element.getElementsByTagName("CAJERO-ID").item(0).getTextContent();                
+                    String codeAccount = element.getElementsByTagName("CUENTA-ID").item(0).getTextContent();
+                    if (transactionControl.validateNewTransaction(code, dateTransaction, hourTransaction, dateTransaction, amount, code, amount)) {
+                        transactionDB.insertNewTransaction(code, dateTransaction, hourTransaction, type, amount, codeCashier, codeAccount);
                     }
                 }
             } catch (Exception e) {
