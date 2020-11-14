@@ -4,6 +4,10 @@
     Author     : user-ubunto
 --%>
 
+<%@page import="com.mycompany.proyectofipc2.ClientControlers.ClientControl"%>
+<%@page import="AccountControlers.AccountControl"%>
+<%@page import="com.mycompany.proyectofipc2.Objects.Client"%>
+<%@page import="com.mycompany.proyectofipc2.Objects.Account"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -15,6 +19,48 @@
     </head>
     <body>
         <%@include file="../headerLog.jsp"%> 
+        <%
+            Account account = null;
+            Client client = null;
+            boolean canWithdraw = false;
+            String enableB = "";
+            if (request.getParameter("codeA") != null) {
+                AccountControl accountC = new AccountControl();
+                account = accountC.getAccountByCode(request.getParameter("codeA"));
+                if (account != null) {
+                    ClientControl clientC = new ClientControl();
+                    client = clientC.getClientByCode(account.getClientCode());
+                }
+            }
+            if (request.getParameter("accountCode") != null) {
+                AccountControl accountC = new AccountControl();
+                account = accountC.getAccountByCode(request.getParameter("accountCode"));
+                if (account != null) {
+                    Double ammount = Double.parseDouble(request.getParameter("ammountA"));
+                    if (ammount <= account.getCredit()) {
+                        accountC.setWithdraw(account.getCode(), ammount);
+        %>
+        <script>
+            alert("Se realizo el retiro con exito de: Q.<%=String.valueOf(ammount)%> a la cuenta No. <%=account.getCode()%>");
+        </script>  
+        <%  } else {%> 
+        <script>
+            alert("No puede retirar mas dinero del que tiene");
+        </script>
+        <%
+                    }
+                }
+            }
+            if (request.getParameter("responseValidate") != null) {
+                String responseValidate = request.getParameter("responseValidate").toString();
+                if (responseValidate.equals("Valido")) {
+                    canWithdraw = true;
+                } else if (responseValidate.equals("Invalido")) {
+                    canWithdraw = false;
+                }
+                enableB = "disabled";
+            }
+        %>
     <br><center><h1>EL BILLETON</h1></center>
     <center><h3>Deposito</h3></center><br>
     <div class="container backC-2 formC-1">
@@ -25,31 +71,61 @@
                 <p class="text-danger">* Informacion Obligatoria</p>
             </div>
             <div class="col-md-6" >
-                <div class="form-group">
-                    Codigo Cuenta*<input type="text" class="form-control" placeholder="Codigo *" value="" name="codeA"/>
-                </div>
-                <a class="btn  btn-outline-secondary btn-block" >Validar</a>
+                <form>
+                    <div class="form-group">
+                        Codigo Cuenta*<input type="text" class="form-control" placeholder="Codigo *" value="" name="codeA"/>
+                    </div>
+                    <input type="submit" class="btn  btn-outline-secondary btn-block" value"validar">                    
+                </form>
             </div>
         </div>
     </div>
     <br><br>
+    <%if (client != null) {%>
+
+
     <div class="container backC-3 formC-1">
         <center><h4>Informacion del cliente</h4>            
-            <p>Codigo:<%//=code%></p>
-            <p>Nombre: <%//=name%></p>
-            <p>Direccion: <%//=address%></p>
-            <p>DPI:<%//=DPI%></p>
-            <a class="btn  btn-outline-secondary btn-lg">Validar Cliente</a>
+            <p>Codigo:<%=client.getCode()%></p>
+            <p>Nombre: <%=client.getName()%></p>
+            <p>Direccion: <%=client.getAddress()%></p>
+            <p>DPI:<%=client.getDPI()%></p>
+            <form>
+                <div class="form-group">
+                    <div class="maxl">
+                        <label class="radio inline">                                     
+                            <input type="radio" name="responseValidate" value="Valido" checked/>
+                            <span> Valido </span> 
+                        </label>
+                        <label class="radio inline"> 
+                            <input type="radio" name="responseValidate" value="Invalido" />
+                            <span> Invalido </span> 
+                        </label>
+                    </div>
+                </div>
+                <input type="hidden" value="<%=account.getCode()%>" name="codeA"/>
+                <input class="btn  btn-outline-secondary btn-lg" type="submit" value="Validar Cliente" <%=enableB%>>
+            </form>                        
     </div>
     <br><br>
+    <%if (canWithdraw == true) {%>    
     <div class="container backC-1 formC-1">
-        <center><h4>Monto</h4>
+        <center><h4>Cuenta</h4>
+            <p>Codigo: <%=account.getCode()%></p>
+            <p>Credito: <%=account.getCredit()%></p>
+            <br>
             <p>Ingrese el monto a Retirar</p>
+            <form>
             <div class="col-md-6" >
-                <input type="number" class="form-control " placeholder="Monto *" value="" name="ammountA"/>
+                <input type="number" step="0.01" class="form-control " placeholder="Monto *" required="" value="" name="ammountA"/>
             </div>
-            <br><a class="btn  btn-outline-secondary btn-lg" href="">Retirar</a>
+            <input type="hidden" value="<%=account.getCode()%>" name="accountCode">
+            <br><input class="btn  btn-outline-secondary" name="withdrawal" type="submit" value="Retirar">
+            </form>
         </center>        
     </div> 
+    <%}%>
+    <%}%>
+
 </body>
 </html>

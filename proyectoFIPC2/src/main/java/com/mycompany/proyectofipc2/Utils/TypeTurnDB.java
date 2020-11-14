@@ -49,4 +49,53 @@ public class TypeTurnDB {
         return typeTurn;
     }
     
+    public TypeTurn getTypeTurnNameByCode(String code){
+        TypeTurn typeTurn = null;
+        try {            
+            ps = connection.prepareStatement("SELECT * FROM TYPETURN WHERE code = ?;");
+            ps.setString(1, code);
+            ResultSet res = ps.executeQuery();            
+            if (res.next()){
+                String code1 = res.getString(1);                
+                String nameTurn = res.getString(2);
+                String initHour = res.getString(3);
+                String finalHour = res.getString(4);    
+                typeTurn = new TypeTurn(code1, nameTurn,initHour,finalHour);
+            }         
+            res.close();
+        } catch (Exception e) {
+            
+        }
+        return typeTurn;
+    }
+    
+    public void insertTypeTurn(String code, String name, String initTime,String finalTime){
+        try {
+            ps = connection.prepareStatement("INSERT INTO TYPETURN VALUES (?,?,?,?)");
+            ps.setString(1, code);
+            ps.setString(2, name);                        
+            ps.setString(3, initTime);
+            ps.setString(4, finalTime);
+                        
+            ps.executeUpdate();//action done
+            
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+    }
+    
+    public void updateTypeTurn(String code, String name, String initTime,String finalTime){
+        try {
+            ps = connection.prepareStatement("UPDATE TYPETURN SET name = ?, initHour = ?, finalHour = ? WHERE code = ?");            
+            ps.setString(1, name);                        
+            ps.setString(2, initTime);
+            ps.setString(3, finalTime);
+            ps.setString(4, code);
+                        
+            ps.executeUpdate();//action done
+            
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+    }
 }

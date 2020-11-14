@@ -15,6 +15,7 @@ import java.sql.Blob;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
 
 /**
  *
@@ -49,6 +50,19 @@ public class AccountDB {
         }
     }
     
+    public void updateCreditByCode(String code, Double credit) {        
+        try {
+            ps = connection.prepareStatement("UPDATE ACCOUNT SET credit = ? WHERE code = ?;");   
+            ps.setDouble(1, credit);
+            ps.setString(2, code);            
+            
+            ps.executeUpdate();//action done
+
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+    }
+    
     public Account getAccountByCode(String codeAccount) {
         Account accountR = null;
         try {
@@ -67,5 +81,41 @@ public class AccountDB {
 
         }
         return accountR;
+    }
+    
+    public ArrayList<Account> getAccountsByCodeClient(String codeClient) {
+        ArrayList<Account> accounts = new ArrayList();
+        try {
+            ps = connection.prepareStatement("SELECT * FROM ACCOUNT WHERE CLIENT_code = ?");
+            ps.setString(1, codeClient);
+            ResultSet res = ps.executeQuery();
+            while(res.next()) {
+                String code = res.getString(1);
+                String dateCreated = res.getString(2);
+                Double credit = res.getDouble(3);
+                String clientCode = res.getString(4);                
+                Account accountR = new Account(code,dateCreated,credit,clientCode);
+                accounts.add(accountR);
+            }
+            res.close();
+        } catch (Exception e) {
+
+        }
+        return accounts;
+    }
+    
+    public int getLastCodeAccount() {
+        int code = 0;
+        try {
+            ps = connection.prepareStatement("SELECT code FROM ACCOUNT ORDER BY code DESC;");            
+            ResultSet res = ps.executeQuery();
+            if(res.next()) {
+                code = res.getInt(1)+1;                
+            }
+            res.close();
+        } catch (Exception e) {
+
+        }
+        return code;
     }
 }

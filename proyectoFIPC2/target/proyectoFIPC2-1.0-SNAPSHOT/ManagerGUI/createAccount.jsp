@@ -4,9 +4,14 @@
     Author     : user-ubunto
 --%>
 
+<%@page import="AccountControlers.AccountDB"%>
+<%@page import="com.mycompany.proyectofipc2.Utils.DateHour"%>
+<%@page import="AccountControlers.AccountControl"%>
+<%@page import="com.mycompany.proyectofipc2.Objects.Client"%>
+<%@page import="com.mycompany.proyectofipc2.ClientControlers.ClientControl"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html>
+<html>        
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">        
         <link rel="stylesheet"  href="/proyectoFIPC2/css/customCSS.css">
@@ -15,6 +20,53 @@
     </head>
     <body>
         <%@include file="../headerLog.jsp"%>
+        <%String codeClient = "";
+        String message = "";
+        String message2 = "";
+        Client client = null;
+        String codeAccount = "";
+        AccountControl accountC = new AccountControl();
+        if (request.getParameter("codeC")  != null) {
+            ClientControl clientC = new ClientControl();
+            client = clientC.getClientByCode(request.getParameter("codeC"));
+            if (client == null) {
+                message = "El cliente no existe";
+            }else{
+                codeClient = client.getCode();
+                codeAccount = accountC.getLastCodeAccount();
+                message = "";
+            }
+        }
+        if (request.getParameter("codeClient")  != null) {
+           ClientControl clientC = new ClientControl();
+            client = clientC.getClientByCode(request.getParameter("codeClient"));
+            if (client == null) {
+                message = "El cliente no existe";
+            }else{
+                codeClient = client.getCode();
+                if (request.getParameter("ammountA").isBlank() == false) {
+                    DateHour dateHour = new DateHour();
+                    String code = accountC.getLastCodeAccount();
+                    codeAccount = code;
+                    String dateCreated = dateHour.getDateToday();
+                    Double credit = Double.parseDouble(request.getParameter("ammountA"));
+                    if (accountC.validateAccount(code, dateCreated, credit, client.getCode())) {
+                        AccountDB accountDB = new AccountDB();
+                        accountDB.insertNewAccount(code, dateCreated, credit, client.getCode());%>
+                        <script>
+                            alert("Se creo la cuenta con codigo: <%=code%>");
+                        </script>
+                    <%    codeAccount = accountC.getLastCodeAccount();                    
+                    }                    
+                }else{
+                    String code = accountC.getLastCodeAccount();
+                    codeAccount = code;
+                    message2 = "Debe ingresar un numero en el monto";
+                }
+                
+            }
+        }
+    %>
     <br><center><h1>Crear Cuenta</h1></center><br>
     <div class="container backC-2 formC-1">
         <div class="row">
@@ -24,13 +76,20 @@
                 <p class="text-danger">* Informacion Obligatoria</p>
             </div>
             <div class="col-md-6" >
+                <form>
                 <div class="form-group">
-                    Codigo Cliente*<input type="text" class="form-control" placeholder="Codigo *" value="" name="codeC"/>
+                    Codigo Cliente*<input type="text" class="form-control" placeholder="Codigo *" value="<%=codeClient%>" name="codeC"/>
                 </div>
-                <a class="btn  btn-outline-secondary btn-block" >Validar</a>
-                <p>Nombre: <%//=name%></p>
-                <p>DPI: <%//=name%></p>
-                <p>Direccion: <%//=name%></p>
+                <input class="btn  btn-outline-secondary btn-block"  type="submit" value="Validar">
+                </form>
+                <%=message%>
+                <%if (client != null) {%>
+                    <p>Nombre: <%=client.getName()%></p>
+                    <p>DPI: <%=client.getDPI()%></p>
+                    <p>Direccion: <%=client.getAddress()%></p>      
+                <%  }
+                %>
+                
             </div>
             <div class="col-md-3" >
                 <div class="form-group">
@@ -41,14 +100,21 @@
         </div>
     </div>
     <br><br>
+    <%if (client != null) {%>
     <div class="container backC-3 formC-1">
-        <center><h4>Monto</h4>
-            <p>Ingrese el monto con el que el cliente abrira su cuenta</p>
+        <center><h3>Cuenta</h3>
+            <h5>Codigo Cuenta: <%=codeAccount%></h5>
+            <p>Ingrese el monto con el que el cliente abrira su cuenta</p> 
+            <form>
             <div class="col-md-6" >
             <input type="number" class="form-control " placeholder="Monto *" value="" name="ammountA"/>
+            <input type="hidden" value="<%=codeClient%>" name="codeClient"/>
             </div>
-            <br><a class="btn  btn-outline-secondary" href="">Crear Cuenta</a>
+            <br><input type="submit" class="btn  btn-outline-secondary" value="Crear Cuenta" >
+            </form>
+            <%=message2%>
         </center>        
     </div>
+    <%}%>
 </body>
 </html>

@@ -57,6 +57,27 @@ public class ClientDB {
             System.out.println(e);
         }
     }
+    
+    public void updateClient(String code, String name, String DPI, String birth, String address, String gender,String password) {
+        
+        try {
+            EncryptPassword encrypt = new EncryptPassword();
+            password = encrypt.encrypt(password);
+            ps = connection.prepareStatement("UPDATE CLIENT SET name = ?, DPI = ?, birth = ?, address = ? , gender = ?, password = ? WHERE code = ?;");
+            ps.setString(1, name);
+            ps.setString(2, DPI);
+            ps.setString(3, birth);
+            ps.setString(4, address);
+            ps.setString(5, gender);            
+            ps.setString(6, password);
+            ps.setString(7, code);
+            
+            ps.executeUpdate();//action done
+
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+    }
 
     public Client getClientByCode(String codeClient) {
         Client clientR = null;
@@ -84,4 +105,19 @@ public class ClientDB {
         return clientR;
     }
 
+    public int getLastCodeClient() {
+        int code = 0;
+        try {
+            ps = connection.prepareStatement("SELECT code,name FROM CLIENT ORDER BY code DESC;");            
+            ResultSet res = ps.executeQuery();
+            if(res.next()) {
+                code = res.getInt(1)+1;                
+            }
+            res.close();
+        } catch (Exception e) {
+
+        }
+        return code;
+    }
+    
 }

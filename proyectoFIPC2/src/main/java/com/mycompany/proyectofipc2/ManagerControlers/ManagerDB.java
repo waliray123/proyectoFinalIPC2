@@ -50,6 +50,27 @@ public class ManagerDB {
         }
     }
     
+    public void updateManager(String code, String name, String codeTurn, String DPI, String address, String gender, String password){  
+        
+        try {
+            EncryptPassword encrypt = new EncryptPassword();            
+            password = encrypt.encrypt(password);
+            ps = connection.prepareStatement("UPDATE MANAGER SET name = ?, DPI = ?, address = ? , gender = ?, password = ? ,TYPETURN_code = ? WHERE code = ?");            
+            ps.setString(1, name);                        
+            ps.setString(2, DPI);
+            ps.setString(3, address);
+            ps.setString(4, gender);
+            ps.setString(5, password);
+            ps.setString(6, codeTurn);
+            ps.setString(7, code);
+                        
+            ps.executeUpdate();//action done
+            
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+    }
+    
     public Manager getManagerByCode(String codeManager){
         Manager managerR = null;
         try {            

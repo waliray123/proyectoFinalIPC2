@@ -29,9 +29,28 @@ public class AccountControl {
         return isValid;
     }
     
+    public void setDeposit(String codeAccount, Double ammount){
+        Account account = getAccountByCode(codeAccount);
+        Double creditToSet = account.getCredit() + ammount;
+        AccountDB accountDB = new AccountDB();
+        accountDB.updateCreditByCode(codeAccount, creditToSet);
+    }
+    
+    public void setWithdraw(String codeAccount, Double ammount){
+        Account account = getAccountByCode(codeAccount);
+        Double creditToSet = account.getCredit() - ammount;
+        AccountDB accountDB = new AccountDB();
+        accountDB.updateCreditByCode(codeAccount, creditToSet);
+    }
+    
     public Account getAccountByCode(String code){
         AccountDB accountDB = new AccountDB();
         return accountDB.getAccountByCode(code);
     }
     
+    public String getLastCodeAccount(){
+        AccountDB accountDB = new AccountDB();
+        String codeAccount = String.valueOf(accountDB.getLastCodeAccount());
+        return codeAccount;
+    }
 }

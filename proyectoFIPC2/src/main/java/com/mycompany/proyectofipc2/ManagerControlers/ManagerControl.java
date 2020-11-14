@@ -32,6 +32,17 @@ public class ManagerControl {
         return isValid;
     }
     
+    public boolean validateUpdateManager(String code, String name, String codeTurn, String DPI, String address, String gender, String password){
+        boolean isValid = false;
+        if(code.isBlank() || name.isBlank() || codeTurn.isBlank() || DPI.isBlank() 
+                || address.isBlank() || gender.isBlank()|| password.isBlank()) {
+            isValid = false;
+        }else{
+            isValid = true;
+        }
+        return isValid;
+    }
+    
     public Manager getManagerByCode(String code){
         ManagerDB managerDB = new ManagerDB();
         return managerDB.getManagerByCode(code);
