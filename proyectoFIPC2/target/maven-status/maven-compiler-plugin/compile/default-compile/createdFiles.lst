@@ -11,6 +11,7 @@ Servlets/Logout.class
 com/mycompany/proyectofipc2/Utils/validateInsertions.class
 Servlets/LoginServlet.class
 com/mycompany/proyectofipc2/Objects/TypeTurn.class
+com/mycompany/proyectofipc2/CashierControlers/CashierReportsDB.class
 com/mycompany/proyectofipc2/Utils/ConnectionDB.class
 com/mycompany/proyectofipc2/Objects/Manager.class
 com/mycompany/proyectofipc2/ManagerControlers/ManagerDB.class
@@ -22,6 +23,7 @@ com/mycompany/proyectofipc2/TransactionControlers/TransactionControl.class
 com/mycompany/proyectofipc2/ClientControlers/ClientControl.class
 com/mycompany/proyectofipc2/Objects/Transaction.class
 com/mycompany/proyectofipc2/Utils/TypeTurnDB.class
+com/mycompany/proyectofipc2/ObjectsReports/TransactionBalance.class
 com/mycompany/proyectofipc2/Objects/Account.class
 com/mycompany/proyectofipc2/ManagerControlers/ManagerControl.class
 com/mycompany/proyectofipc2/Utils/EncryptPassword.class

@@ -8,6 +8,7 @@ package com.mycompany.proyectofipc2.ClientControlers;
 import com.mycompany.proyectofipc2.Objects.Cashier;
 import com.mycompany.proyectofipc2.Objects.Client;
 import com.mycompany.proyectofipc2.Utils.ConnectionDB;
+import com.mycompany.proyectofipc2.Utils.DateHour;
 import com.mycompany.proyectofipc2.Utils.EncryptPassword;
 import java.io.File;
 import java.io.FileInputStream;
@@ -35,8 +36,7 @@ public class ClientDB {
         this.connection = connect.getConnection();
     }
 
-    public void insertNewClient(String code, String name, String DPI, String birth, String address, String gender,File DPI_PDF1 ,String password) {
-        
+    public void insertNewClient(String code, String name, String DPI, String birth, String address, String gender,File DPI_PDF1 ,String password) {        
         try {
             EncryptPassword encrypt = new EncryptPassword();
             password = encrypt.encrypt(password);
@@ -119,5 +119,23 @@ public class ClientDB {
         }
         return code;
     }
+    
+    
+    public void setNewClientHistory(String accountCode, String clientCodeR , String clientCodeS){
+        DateHour dateH = new DateHour();
+        String dayToday = dateH.getDateToday();
+        try {
+            ps = connection.prepareStatement("INSERT INTO CLIENTHISTORY (dateChange,ACCOUNT_code,CLIENT_codeR,CLIENT_codeS)VALUES (?,?,?,?)");                              
+            ps.setString(1, dayToday);
+            ps.setString(2, accountCode);
+            ps.setString(3, clientCodeR);            
+            ps.setString(3, clientCodeS);            
+            
+            ps.executeUpdate();//action done
+
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+    }        
     
 }

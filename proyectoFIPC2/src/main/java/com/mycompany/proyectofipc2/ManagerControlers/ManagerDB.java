@@ -11,6 +11,7 @@ import com.mycompany.proyectofipc2.Utils.EncryptPassword;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
 
 /**
  *
@@ -109,19 +110,23 @@ public class ManagerDB {
         }
     }
     
-    public double getLimits(){
-        double limitMoney = -1; 
+    public ArrayList<String> getLimits(){
+        ArrayList<String> limits = new ArrayList<>();        
         try {            
             ps = connection.prepareStatement("SELECT * FROM LIMITS");
             ResultSet res = ps.executeQuery();            
-            if(res.next()){
-                limitMoney = res.getDouble(3);                      
+            while(res.next()){
+                String limitMoney = res.getString(3);  
+                limits.add(limitMoney);
             }         
             res.close();
         } catch (Exception e) {
             System.out.println(e);
         }        
-        return limitMoney;
+        if (limits.size() <= 0 ) {
+            limits = null;
+        }
+        return limits;
     }
     
     public void setNewLimit(String code, String name, Double limitMoney){
@@ -138,10 +143,11 @@ public class ManagerDB {
         }
     }
     
-    public void updateLimit(Double limitMoney){
+    public void updateLimit(Double limitMoney, String code){
         try {
-            ps = connection.prepareStatement("UPDATE LIMITS SET limitMoney = ? WHERE code = 1;");                     
+            ps = connection.prepareStatement("UPDATE LIMITS SET limitMoney = ? WHERE code = ?");                     
             ps.setDouble(1, limitMoney);
+            ps.setString(2, code);
                         
             ps.executeUpdate();//action done
             

@@ -31,8 +31,9 @@ public class validateInsertions {
         if (cashierDB.getCashierByCode("101") == null) {
             cashierDB.insertNewCashier("101", "Banca virtual", "3", "101","1","0","8cX7%%tedj4!yJm4");
         }
-        if (managerDB.getLimits() == -1) {
+        if (managerDB.getLimits() == null) {
             managerDB.setNewLimit("1", "limite1", 1000.00);
+            managerDB.setNewLimit("2", "limite2", 1001.00);
         }
     }
         

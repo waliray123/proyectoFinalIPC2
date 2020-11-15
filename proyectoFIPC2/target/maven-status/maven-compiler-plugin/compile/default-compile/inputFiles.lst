@@ -16,7 +16,9 @@
 /home/user-ubunto/Escritorio/proyectoFinal/proyectoFIPC2/src/main/java/com/mycompany/proyectofipc2/Objects/Cashier.java
 /home/user-ubunto/Escritorio/proyectoFinal/proyectoFIPC2/src/main/java/com/mycompany/proyectofipc2/Objects/Transaction.java
 /home/user-ubunto/Escritorio/proyectoFinal/proyectoFIPC2/src/main/java/com/mycompany/proyectofipc2/CashierControlers/CashierControl.java
+/home/user-ubunto/Escritorio/proyectoFinal/proyectoFIPC2/src/main/java/com/mycompany/proyectofipc2/ObjectsReports/TransactionBalance.java
 /home/user-ubunto/Escritorio/proyectoFinal/proyectoFIPC2/src/main/java/com/mycompany/proyectofipc2/Utils/ConnectionDB.java
+/home/user-ubunto/Escritorio/proyectoFinal/proyectoFIPC2/src/main/java/com/mycompany/proyectofipc2/CashierControlers/CashierReportsDB.java
 /home/user-ubunto/Escritorio/proyectoFinal/proyectoFIPC2/src/main/java/com/mycompany/proyectofipc2/Utils/TypeTurnDB.java
 /home/user-ubunto/Escritorio/proyectoFinal/proyectoFIPC2/src/main/java/Servlets/saveClient.java
 /home/user-ubunto/Escritorio/proyectoFinal/proyectoFIPC2/src/main/java/AccountControlers/AccountDB.java

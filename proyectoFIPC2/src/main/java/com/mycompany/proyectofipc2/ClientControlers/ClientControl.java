@@ -5,7 +5,10 @@
  */
 package com.mycompany.proyectofipc2.ClientControlers;
 
+import AccountControlers.AccountDB;
+import com.mycompany.proyectofipc2.Objects.Account;
 import com.mycompany.proyectofipc2.Objects.Client;
+import com.mycompany.proyectofipc2.Objects.ClientAccount;
 import com.mycompany.proyectofipc2.Utils.ValidateCodes;
 import java.io.File;
 
@@ -63,5 +66,16 @@ public class ClientControl {
             countTimes++;
         }        
         return codeClient;
+    }       
+    
+    public void sendInvitation(String codeClientAccount){
+        AccountDB accountDB = new AccountDB();
+        ClientAccount clientAccount = accountDB.getRelationClientAccountByCode(codeClientAccount);
+        String codeClientSend = clientAccount.getCodeClient();        
+        String codeAccount = clientAccount.getCodeClient();
+        Account accountAccept = accountDB.getAccountByCode(codeAccount);
+        String codeClientRecieve = accountAccept.getClientCode();
+        ClientDB clientDB = new ClientDB();
+        clientDB.setNewClientHistory(codeAccount, codeClientRecieve, codeClientSend);
     }
 }

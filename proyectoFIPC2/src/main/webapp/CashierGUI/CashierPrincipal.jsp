@@ -73,7 +73,7 @@
                             <center>
                                 <h3 class="card-title">Reporte 1</h3>
                                 <p class="card-text">Listado de depósitos y retiros realizados durante su turno</p>
-                                <a class="btn btn-light btn-outline-dark" href="/proyectoFIPC2/ManagerGUI/createAccount.jsp" title="Read more" ><img src="/proyectoFIPC2/images/reporte.png" alt="x" width="25" height="25"/> Crear </a>
+                                <a class="btn btn-light btn-outline-dark" href="/proyectoFIPC2/CashierGUI/cashierReports/cashierReport1.jsp" title="Read more" ><img src="/proyectoFIPC2/images/reporte.png" alt="x" width="25" height="25"/> Crear </a>
                             </center>
                         </div>
                     </div>
@@ -84,7 +84,7 @@
                             <center>
                                 <h3 class="card-title">Reporte 2</h3>
                                 <p class="card-text">Listado de las transacciones realizadas por día en un intervalo de tiempo</p>
-                                <a class="btn btn-light btn-outline-dark" href="/proyectoFIPC2/ManagerGUI/createAccount.jsp" title="Read more" ><img src="/proyectoFIPC2/images/reporte.png" alt="x" width="25" height="25"/> Crear </a>
+                                <a class="btn btn-light btn-outline-dark" href="/proyectoFIPC2/CashierGUI/cashierReports/cashierReport2.jsp" title="Read more" ><img src="/proyectoFIPC2/images/reporte.png" alt="x" width="25" height="25"/> Crear </a>
                             </center>
                         </div>
                     </div>

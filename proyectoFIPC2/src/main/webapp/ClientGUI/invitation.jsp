@@ -68,6 +68,7 @@
                         </script>
                     <%}else{
                     accountC.sendInvitation(clientAccount2.getCode(), clientAccount2.getAttempts());
+                    clientC.sendInvitation(clientAccount2.getCode());
                     %>
                         <script>
                             alert("Invitacion enviada con exito");
