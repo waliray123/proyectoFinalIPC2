@@ -25,10 +25,13 @@ public class ManagerControl {
                 || address.isBlank() || gender.isBlank()|| password.isBlank()) {
             isValid = false;
         }else{
-            if (getManagerByCode(code) != null) {
+            if (getManagerByCode(code) != null) {                
                 isValid = false;
             }else{
-                isValid = true;
+                ValidateCodes validateCode = new ValidateCodes();                
+                if (validateCode.validateCode(code)) {
+                    isValid = true;
+                }                
             }
         }
         return isValid;

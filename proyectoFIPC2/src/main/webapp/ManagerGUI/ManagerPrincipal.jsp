@@ -52,7 +52,7 @@
                             <center>
                                 <h3 class="card-title">Registrar Cliente</h3>
                                 <p class="card-text">Registrar a un cliente en el sistema</p>
-                                <a class="btn btn-light btn-outline-dark <%//=isInHour%>" href="/proyectoFIPC2/ManagerGUI/registerClient.jsp" title="Read more" ><img src="/proyectoFIPC2/images/cuenta.png" alt="x" width="25" height="25"/> Registrar</a>
+                                <a class="btn btn-light btn-outline-dark <%=isInHour%>" href="/proyectoFIPC2/ManagerGUI/registerClient.jsp" title="Read more" ><img src="/proyectoFIPC2/images/cuenta.png" alt="x" width="25" height="25"/> Registrar</a>
                             </center>
                         </div>
                     </div>
@@ -113,7 +113,7 @@
                             <center>
                                 <h3 class="card-title">Registrar Cajero</h3>
                                 <p class="card-text">Regitrar a un cajero en el sistema</p>
-                                <a class="btn btn-light btn-outline-dark <%//=isInHour%>" href="/proyectoFIPC2/ManagerGUI/createCashier.jsp" title="Read more" ><img src="/proyectoFIPC2/images/registro.png" alt="x" width="25" height="25"/> Actualizar</a>
+                                <a class="btn btn-light btn-outline-dark <%=isInHour%>" href="/proyectoFIPC2/ManagerGUI/createCashier.jsp" title="Read more" ><img src="/proyectoFIPC2/images/registro.png" alt="x" width="25" height="25"/> Actualizar</a>
                             </center>
                         </div>
                     </div>
@@ -124,7 +124,7 @@
                             <center>
                                 <h3 class="card-title">Registrar Gerente</h3>
                                 <p class="card-text">Regitrar a un Gerente en el sistema</p>
-                                <a class="btn btn-light btn-outline-dark <%//=isInHour%>" href="/proyectoFIPC2/ManagerGUI/createManager.jsp" title="Read more" ><img src="/proyectoFIPC2/images/registro.png" alt="x" width="25" height="25"/> Actualizar</a>
+                                <a class="btn btn-light btn-outline-dark <%=isInHour%>" href="/proyectoFIPC2/ManagerGUI/createManager.jsp" title="Read more" ><img src="/proyectoFIPC2/images/registro.png" alt="x" width="25" height="25"/> Actualizar</a>
                             </center>
                         </div>
                     </div>

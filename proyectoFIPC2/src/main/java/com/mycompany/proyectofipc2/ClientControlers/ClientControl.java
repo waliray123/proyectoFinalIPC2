@@ -28,7 +28,10 @@ public class ClientControl {
             if (getClientByCode(code) != null) {
                 isValid = false;
             }else{
-                isValid = true;
+                ValidateCodes validateCode = new ValidateCodes();                
+                if (validateCode.validateCode(code)) {
+                    isValid = true;
+                }
             }
         }
         return isValid;

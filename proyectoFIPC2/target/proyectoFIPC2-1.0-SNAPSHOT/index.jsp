@@ -13,8 +13,9 @@
     %>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
-        <!-- <link rel="stylesheet"  href="/proyectoFIPC2/css/bootstrap.min.css"> -->
+        <!--<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">-->
+        <link rel="stylesheet"  href="/proyectoFIPC2/css/bootstrap.min.css">         
+        <link rel="stylesheet"  href="/proyectoFIPC2/css/customCSS.css">
         <title>Pagina Principal</title>
     </head>
     <body>
@@ -40,5 +41,17 @@
                 </div>
             </nav>
         </div>
-    </body>
+    <br><center><h1>EL BILLETON</h1></center><br>
+    <center><h2>Pagina Principal</h2>
+        <div class="container-fluid">
+            <div class="backC-1 borderR">
+                <center>
+                    <h3 class="card-title">Ingresar</h3>
+                    <p class="card-text">Ingresa a nuestro sistema</p>
+                    <a class="btn btn-light btn-outline-dark" href="/proyectoFIPC2/login.jsp" title="Ingresar" >Ingresar </a>
+                </center>
+            </div>
+        </div>
+    </center>
+</body>
 </html>

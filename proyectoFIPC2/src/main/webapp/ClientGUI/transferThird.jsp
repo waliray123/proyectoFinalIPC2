@@ -31,8 +31,9 @@
             String codeAccount2 = "";           
             account1 = accountDB.getAccountByCode(codeAccount1);
             if (request.getParameter("validate1") != null) {
-                    codeAccount1= request.getParameter("codeClientAccount");
+                    codeAccount1= request.getParameter("codeClientAccount");                    
                     ClientAccount clientAccount1 = accountDB.getRelationClientAccountByCode(codeAccount1);
+                    account1 = accountDB.getAccountByCode(clientAccount1.getCodeAccount());
                     if (account1 != null) {
                         account1 = accountDB.getAccountByCode(clientAccount1.getCodeAccount());               
                     }                                 
@@ -78,7 +79,7 @@
             </div>
             <div class="col-md-6" >
                 <form>                        
-                    <select name="codeClientAccount" class="browser-default custom-select custom-select-lg mb-3" onClick="jsFunction()" id="selectOpt">
+                    <select name="codeClientAccount" class="browser-default custom-select custom-select-lg mb-3" >
                         <%for (ClientAccount clientAccount : clientAccounts) {
                                 String codeAccount = clientAccount.getCodeAccount();
                         %>
