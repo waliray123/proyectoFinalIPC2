@@ -22,9 +22,11 @@
             ArrayList<TransactionBalance> transactionsB = new ArrayList<>();
             int cont = 1;
             String balanceTotal = "0.00";
+            String date1 = "";
+            String date2 = "";
             if (request.getParameter("date1") != null) {
-                String date1 = request.getParameter("date1");
-                String date2 = request.getParameter("date2");
+                date1 = request.getParameter("date1");
+                date2 = request.getParameter("date2");
                 transactionsB = cashierRDB.getReport2(request.getSession().getAttribute("code").toString(), date1, date2);
             }
         %>
@@ -87,6 +89,12 @@
             </tr>
         </tbody>
     </table>
+    <form method="POST" action="../../saveTransactionBalance">
+        <input type="hidden" value="<%=date1%>" name="date1"/>
+        <input type="hidden" value="<%=date2%>" name="date2"/>
+        <input type="hidden" value="<%=balanceTotal%>" name="total"/>
+        <input type="submit" value="Exportar"/>        
+    </form>
     <%}%>
 </body>
 </html>

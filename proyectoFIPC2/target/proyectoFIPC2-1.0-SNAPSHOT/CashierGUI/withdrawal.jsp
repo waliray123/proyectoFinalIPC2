@@ -41,7 +41,7 @@
                     if (ammount <= account.getCredit()) {
                         accountC.setWithdraw(account.getCode(), ammount);
                         TransactionControl transactionC = new TransactionControl();
-                    transactionC.setTransaction("DEBITO", request.getSession().getAttribute("code").toString(), account.getCode(), String.valueOf(ammount));
+                        transactionC.setTransaction("DEBITO", request.getSession().getAttribute("code").toString(), account.getCode(), String.valueOf(ammount));
         %>
         <script>
             alert("Se realizo el retiro con exito de: Q.<%=String.valueOf(ammount)%> a la cuenta No. <%=account.getCode()%>");
@@ -73,13 +73,14 @@
                 <p>Ingresar el codigo de cuenta</p>
                 <p class="text-danger">* Informacion Obligatoria</p>
             </div>
-            <div class="col-md-6" >
+            <div class="col-md-6" >                
                 <form>
                     <div class="form-group">
                         Codigo Cuenta*<input type="text" class="form-control" placeholder="Codigo *" value="" name="codeA"/>
                     </div>
-                    <input type="submit" class="btn  btn-outline-secondary btn-block" value"validar">                    
+                    <input type="submit" class="btn  btn-outline-secondary btn-block" value="validar">                    
                 </form>
+
             </div>
         </div>
     </div>
@@ -108,7 +109,11 @@
                 </div>
                 <input type="hidden" value="<%=account.getCode()%>" name="codeA"/>
                 <input class="btn  btn-outline-secondary btn-lg" type="submit" value="Validar Cliente" <%=enableB%>>
-            </form>                        
+            </form>     
+            <form method="GET" action="../saveDPI">
+                    <input type="hidden" value="<%=client.getCode()%>" name="codeClient"/>
+                    <input type="submit" value="Descargar DPI"/>        
+            </form>
     </div>
     <br><br>
     <%if (canWithdraw == true) {%>    
@@ -119,11 +124,11 @@
             <br>
             <p>Ingrese el monto a Retirar</p>
             <form>
-            <div class="col-md-6" >
-                <input type="number" step="0.01" class="form-control " placeholder="Monto *" required="" value="" name="ammountA"/>
-            </div>
-            <input type="hidden" value="<%=account.getCode()%>" name="accountCode">
-            <br><input class="btn  btn-outline-secondary" name="withdrawal" type="submit" value="Retirar">
+                <div class="col-md-6" >
+                    <input type="number" step="0.01" class="form-control " placeholder="Monto *" required="" value="" name="ammountA"/>
+                </div>
+                <input type="hidden" value="<%=account.getCode()%>" name="accountCode">
+                <br><input class="btn  btn-outline-secondary" name="withdrawal" type="submit" value="Retirar">
             </form>
         </center>        
     </div> 

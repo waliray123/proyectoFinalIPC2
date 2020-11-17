@@ -56,9 +56,9 @@ public class ManagerReportsDB {
         return clients2;
     }
     
-    public ArrayList<CashierQuantity> getReport7(){
+    public ArrayList<CashierQuantity> getReport7(String date1, String date2){
         ArrayList<CashierQuantity> cashiersQ = new  ArrayList<>();
-        ArrayList<CodeObject> codeCashiers = new ArrayList<>();
+        ArrayList<CodeObject> codeCashiers = getCodeCashierQuantity(date1, date2);
         CashierDB cashierDB = new CashierDB();
         for (CodeObject codeCashier : codeCashiers) {
             String codeCahier1 = codeCashier.getCode();
@@ -77,7 +77,7 @@ public class ManagerReportsDB {
             ps.setString(1, codeManager);
             ps.setString(2, type);
             ResultSet res = ps.executeQuery();            
-            if(res.next()){
+            while(res.next()){
                 String code = res.getString(1);                
                 String description = res.getString(2);
                 String type1 = res.getString(3);
@@ -99,7 +99,7 @@ public class ManagerReportsDB {
             ps = connection.prepareStatement("SELECT C.code,C.name,C.DPI,C.birth,C.address,C.gender,T.code,T.amount FROM (TRANSACTION AS T, ACCOUNT AS A, CLIENT AS C) WHERE T.ACCOUNT_code = A.code AND A.CLIENT_code = C.code AND T.amount > ? ORDER BY T.amount DESC ;");
             ps.setString(1, limit);
             ResultSet res = ps.executeQuery();
-            if(res.next()) {
+            while(res.next()) {
                 String code = res.getString(1);
                 String name = res.getString(2);
                 String DPI = res.getString(3);
@@ -126,7 +126,7 @@ public class ManagerReportsDB {
         try {
             ps = connection.prepareStatement("SELECT C.code,C.name,C.DPI,C.birth,C.address,C.gender,SUM(T.amount) AS Total FROM (TRANSACTION AS T, ACCOUNT AS A, CLIENT AS C) WHERE T.ACCOUNT_code = A.code AND A.CLIENT_code = C.code GROUP BY C.code ORDER BY Total;");            
             ResultSet res = ps.executeQuery();
-            if(res.next()) {
+            while(res.next()) {
                 String code = res.getString(1);
                 String name = res.getString(2);
                 String DPI = res.getString(3);
@@ -151,7 +151,7 @@ public class ManagerReportsDB {
         try {
             ps = connection.prepareStatement("SELECT C.code,C.name,C.DPI,C.birth,C.address,C.gender,A.code,A.credit FROM (ACCOUNT AS A, CLIENT AS C) WHERE A.CLIENT_code = C.code ORDER BY credit DESC LIMIT 10;");            
             ResultSet res = ps.executeQuery();
-            if(res.next()) {
+            while(res.next()) {
                 String code = res.getString(1);
                 String name = res.getString(2);
                 String DPI = res.getString(3);
@@ -180,7 +180,7 @@ public class ManagerReportsDB {
             ps.setString(1, date1);
             ps.setString(2, date2);
             ResultSet res = ps.executeQuery();
-            if(res.next()) {
+            while(res.next()) {
                 String code = res.getString(1);
                 String quantity = res.getString(2);
                 

@@ -31,7 +31,7 @@
             String name = "";
             String DPI = "";
             String password = "";
-            String birth = "";
+            String birth = "2020-01-01";
             String address = "";
             if (request.getParameter("codeC") != null) {
                 ClientControl clientC = new ClientControl();
@@ -94,7 +94,7 @@
             <div class="col-md-6" >
                 <form>
                     <div class="form-group">
-                        Codigo Cliente*<input type="text" class="form-control" placeholder="Codigo *" value="<%=codeClient%>" name="codeC"/>
+                        Codigo Cliente*<input type="text" class="form-control" placeholder="Codigo *" value="<%=codeClient%>" name="codeC" required/>
                     </div>
                     <input type="submit" class="btn  btn-outline-secondary btn-block" value="Validar">
                 </form>
@@ -118,17 +118,17 @@
 
                         <div class="col-md-6">
                             <div class="form-group">
-                                Nombre*<input type="text" class="form-control" placeholder="Nombre *" value="<%=name%>" name="name"/>
+                                Nombre*<input type="text" class="form-control" placeholder="Nombre *" value="<%=name%>" name="name" required/>
                             </div>
                             <div class="form-group">
-                                DPI*<input type="text" class="form-control" placeholder="DPI *" value="<%=DPI%>" name="DPI"/>
+                                DPI*<input type="text" class="form-control" placeholder="DPI *" value="<%=DPI%>" name="DPI" maxlength="13" required/>
                             </div>                                
                             <div class="form-group">
                                 Contrasena*
-                                <input type="password" class="form-control" placeholder="Password *" value="<%=password%>" name="passClient"/>                            
+                                <input type="password" class="form-control" placeholder="Password *" value="<%=password%>" name="passClient" required/>                            
                             </div>
                             <div class="form-group">
-                                <div class="maxl" name="gender">
+                                <div class="maxl">
                                     <label class="radio inline">                                     
                                         <input type="radio" name="gender" value="Masculino" <%=mas%>/>
                                         <span> Masculino </span> 
@@ -142,10 +142,10 @@
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
-                                Fecha de Nacimiento*<input type="date" class="form-control" value="<%=birth%>" name="birth"/>
+                                Fecha de Nacimiento*<input type="date" class="form-control" value="<%=birth%>" name="birth" required/>
                             </div>
                             <div class="form-group">
-                                Direccion*<input type="text" class="form-control" placeholder="Direccion *" value="<%=address%>" name="address"/>
+                                Direccion*<input type="text" class="form-control" placeholder="Direccion *" value="<%=address%>" name="address" required/>
                             </div>
                             <input type="hidden" name="codeClient" value="<%=codeClient%>">
                             <center>

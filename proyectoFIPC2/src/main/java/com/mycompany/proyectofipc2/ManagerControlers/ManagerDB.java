@@ -155,4 +155,43 @@ public class ManagerDB {
             System.out.println(e);
         }
     }
+    
+    public int getLastCodeManager() {
+        int code = 0;
+        try {
+            ps = connection.prepareStatement("SELECT code,name FROM MANAGER ORDER BY code DESC;");            
+            ResultSet res = ps.executeQuery();
+            if(res.next()) {
+                code = res.getInt(1)+1;                
+            }
+            res.close();
+        } catch (Exception e) {
+
+        }
+        return code;
+    }
+    
+    public ArrayList<Manager> getAllManagers(){
+        ArrayList<Manager> managers = new ArrayList<>();
+        Manager managerR = null;
+        try {            
+            ps = connection.prepareStatement("SELECT * FROM MANAGER");
+            ResultSet res = ps.executeQuery();            
+            while(res.next()){
+                String code = res.getString(1);                
+                String name = res.getString(2);
+                String DPI = res.getString(3);
+                String address = res.getString(4);
+                String gender = res.getString(5);
+                String password = res.getString(6);
+                String codeTurn = res.getString(7);        
+                managerR = new Manager(code, name, codeTurn, DPI, address,gender,password);
+                managers.add(managerR);
+            }         
+            res.close();
+        } catch (Exception e) {
+            System.out.println(e);
+        }        
+        return managers;
+    }
 }

@@ -11,6 +11,7 @@ import com.mycompany.proyectofipc2.Utils.EncryptPassword;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
 
 /**
  *
@@ -93,5 +94,44 @@ public class CashierDB {
             
         }        
         return cashierR;
+    }
+    
+    public int getLastCodeCashier() {
+        int code = 0;
+        try {
+            ps = connection.prepareStatement("SELECT code,name FROM CASHIER ORDER BY code DESC;");            
+            ResultSet res = ps.executeQuery();
+            if(res.next()) {
+                code = res.getInt(1)+1;                
+            }
+            res.close();
+        } catch (Exception e) {
+
+        }
+        return code;
+    }
+    
+    public ArrayList<Cashier> getAllCashiers(){
+        ArrayList<Cashier> cashiers = new ArrayList<>();
+        Cashier cashierR = null;
+        try {            
+            ps = connection.prepareStatement("SELECT * FROM CASHIER");
+            ResultSet res = ps.executeQuery();            
+            while(res.next()){
+                String code = res.getString(1);                
+                String name = res.getString(2);
+                String DPI = res.getString(3);
+                String address = res.getString(4);
+                String gender = res.getString(5);
+                String password = res.getString(6);
+                String codeTurn = res.getString(7);        
+                cashierR = new Cashier(code, name, codeTurn, DPI, address,gender,password);
+                cashiers.add(cashierR);
+            }
+            res.close();
+        } catch (Exception e) {
+            
+        }        
+        return cashiers;
     }
 }

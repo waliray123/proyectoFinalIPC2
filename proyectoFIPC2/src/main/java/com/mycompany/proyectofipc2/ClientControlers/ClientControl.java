@@ -72,7 +72,7 @@ public class ClientControl {
         AccountDB accountDB = new AccountDB();
         ClientAccount clientAccount = accountDB.getRelationClientAccountByCode(codeClientAccount);
         String codeClientSend = clientAccount.getCodeClient();        
-        String codeAccount = clientAccount.getCodeClient();
+        String codeAccount = clientAccount.getCodeAccount();
         Account accountAccept = accountDB.getAccountByCode(codeAccount);
         String codeClientRecieve = accountAccept.getClientCode();
         ClientDB clientDB = new ClientDB();

@@ -16,6 +16,7 @@ import java.sql.Blob;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
 
 /**
  *
@@ -129,7 +130,7 @@ public class ClientDB {
             ps.setString(1, dayToday);
             ps.setString(2, accountCode);
             ps.setString(3, clientCodeR);            
-            ps.setString(3, clientCodeS);            
+            ps.setString(4, clientCodeS);            
             
             ps.executeUpdate();//action done
 
@@ -138,4 +139,30 @@ public class ClientDB {
         }
     }        
     
+    public ArrayList<Client> getAllClients(){
+        ArrayList<Client> clients = new ArrayList<>();
+        Client clientR = null;
+        try {
+            ps = connection.prepareStatement("SELECT * FROM CLIENT;");
+            ResultSet res = ps.executeQuery();
+            while(res.next()) {
+                String code = res.getString(1);
+                String name = res.getString(2);
+                String DPI = res.getString(3);
+                String birth = res.getString(4);
+                String address = res.getString(5);
+                String gender = res.getString(6);
+                Blob DPI_PDF = res.getBlob(7);
+                String password = res.getString(8);
+                
+                clientR = new Client(code, name, DPI, birth, address, gender, password);
+                clientR.setDPI_PDF(DPI_PDF);
+                clients.add(clientR);
+            }
+            res.close();
+        } catch (Exception e) {
+
+        }
+        return clients;
+    }
 }

@@ -98,7 +98,7 @@ public class saveClient extends HttpServlet {
                         String filePath = uploadPath + File.separator + fileName;
                         storeFile = new File(filePath);
                         DPI_PDF = storeFile;
-                        //item.write(storeFile);                        
+                        item.write(storeFile);                        
                     } else {
                         String fieldName = item.getFieldName();
                         String fieldValue = item.getString();

@@ -41,7 +41,7 @@
                             <center>
                                 <h3 class="card-title">Deposito</h3>
                                 <p class="card-text">Un cliente deposita en su cuenta bancaria</p>
-                                <a class="btn btn-light btn-outline-dark <%=isInHour%>" href="/proyectoFIPC2/CashierGUI/Deposit.jsp" title="Read more" ><img src="/proyectoFIPC2/images/deposito.png" alt="x" width="25" height="25"/> Depositar </a>
+                                <a class="btn btn-light btn-outline-dark <%//=isInHour%>" href="/proyectoFIPC2/CashierGUI/Deposit.jsp" title="Read more" ><img src="/proyectoFIPC2/images/deposito.png" alt="x" width="25" height="25"/> Depositar </a>
                             </center>
                         </div>
                     </div>

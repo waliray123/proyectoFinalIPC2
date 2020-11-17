@@ -7,6 +7,7 @@ package com.mycompany.proyectofipc2.ManagerControlers;
 
 import com.mycompany.proyectofipc2.Objects.Manager;
 import com.mycompany.proyectofipc2.Utils.DateHour;
+import com.mycompany.proyectofipc2.Utils.ValidateCodes;
 
 /**
  *
@@ -55,4 +56,22 @@ public class ManagerControl {
         ManagerDB managerDB = new ManagerDB();
         managerDB.setNewHistorial(codeManager, dateChange, description, type);
     }
+    
+    public int getLastCodeManager(){
+        int codeClient = 0;
+        ManagerDB clientDB = new ManagerDB();
+        boolean isValidate = false;
+        int countTimes = 0;
+        ValidateCodes validateCode = new ValidateCodes();
+        while(isValidate == false){
+            if (countTimes == 0) {
+                codeClient = clientDB.getLastCodeManager();
+            }else{
+                codeClient++;
+            }            
+            isValidate = validateCode.validateCode(String.valueOf(codeClient));   
+            countTimes++;
+        }        
+        return codeClient;
+    }  
 }

@@ -37,13 +37,13 @@
                     <div class="row register-form">
                         <div class="col-md-6">
                             <div class="form-group">
-                                Nombre*<input type="text" class="form-control" placeholder="Nombre *" value="" name="name"/>
+                                Nombre*<input type="text" class="form-control" placeholder="Nombre *" value="" name="name" required/>
                             </div>
                             <div class="form-group">
-                                DPI*<input type="text" class="form-control" placeholder="DPI *" value="" name="DPI"/>
+                                DPI*<input type="text" class="form-control" placeholder="DPI *" value="" name="DPI" maxlength="13" required/>
                             </div>                                
                             <div class="form-group">
-                                Contrasena*<input type="password" class="form-control" placeholder="Password *" value="" name="passClient"/>
+                                Contrasena*<input type="password" class="form-control" placeholder="Password *" value="" name="passClient" required/>
                             </div>
                             <div class="form-group">
                                 <div class="maxl">
@@ -60,13 +60,13 @@
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
-                                Fecha de Nacimiento*<input type="date" class="form-control" value="" name="birth"/>
+                                Fecha de Nacimiento*<input type="date" class="form-control" value="" name="birth" required/>
                             </div>
                             <div class="form-group">
-                                Direccion*<input type="text" class="form-control" placeholder="Direccion *" value="" name="address"/>
+                                Direccion*<input type="text" class="form-control" placeholder="Direccion *" value="" name="address" required/>
                             </div>                                
                             <div class="form-group">
-                                DPI en PDF*<input type="file" class="form-control" accept=".pdf" value="" name="DPI_PDF"/>
+                                DPI en PDF*<input type="file" class="form-control" accept=".pdf" name="DPI_PDF" required/>
                             </div>         
                             <center>
                                 <input type="submit" class="btn  btn-outline-secondary btn-block"  value="Registrar"/>
@@ -78,5 +78,6 @@
             </div>
         </div>
     </div>  
+    <%@include file="../lists/ListClients.jsp"%>
 </body>
 </html>

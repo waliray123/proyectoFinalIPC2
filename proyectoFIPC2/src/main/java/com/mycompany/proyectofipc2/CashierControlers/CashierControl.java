@@ -6,6 +6,7 @@
 package com.mycompany.proyectofipc2.CashierControlers;
 
 import com.mycompany.proyectofipc2.Objects.Cashier;
+import com.mycompany.proyectofipc2.Utils.ValidateCodes;
 
 /**
  *
@@ -49,4 +50,21 @@ public class CashierControl {
         return managerDB.getCashierByCode(code);
     }
     
+    public int getLastCodeCashier(){
+        int codeClient = 0;
+        CashierDB clientDB = new CashierDB();
+        boolean isValidate = false;
+        int countTimes = 0;
+        ValidateCodes validateCode = new ValidateCodes();
+        while(isValidate == false){
+            if (countTimes == 0) {
+                codeClient = clientDB.getLastCodeCashier();
+            }else{
+                codeClient++;
+            }            
+            isValidate = validateCode.validateCode(String.valueOf(codeClient));   
+            countTimes++;
+        }        
+        return codeClient;
+    }
 }

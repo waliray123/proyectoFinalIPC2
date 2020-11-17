@@ -56,5 +56,8 @@
             %>
         </tbody>
     </table>
+    <form method="GET" action="../../saveClientNT">
+        <input type="submit" value="Exportar"/>        
+    </form>
 </body>
 </html>

@@ -56,7 +56,10 @@
             <%  cont++;
                 }
             %>
-        </tbody>
+        </tbody>        
     </table>
+    <form method="POST" action="../../saveClientT">
+        <input type="submit" value="Exportar"/>        
+    </form>
 </body>
 </html>

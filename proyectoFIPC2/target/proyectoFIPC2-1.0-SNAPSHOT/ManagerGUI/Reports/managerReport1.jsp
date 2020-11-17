@@ -19,10 +19,11 @@
     <body>
         <%
             ManagerReportsDB managerRDB = new ManagerReportsDB();
-            ArrayList<ManagerHistory> managerHistory =new ArrayList<>();
+            ArrayList<ManagerHistory> managerHistory = new ArrayList<>();
             int cont = 1;
+            String nameEntity = "";
             if (request.getParameter("nameEntity") != null) {
-                String nameEntity = request.getParameter("nameEntity");
+                nameEntity = request.getParameter("nameEntity");
                 managerHistory = managerRDB.getManagerHistoryByType(request.getSession().getAttribute("code").toString(), nameEntity);
             }
         %>
@@ -40,10 +41,10 @@
                 <form>
                     <div class="form-group">
                         <select name="nameEntity" class="browser-default custom-select custom-select-lg mb-3" id="selectOpt">                        
-                        <option value="CAJERO">CAJERO</option>
-                        <option value="CLIENTE">CLIENTE</option>
-                        <option value="GERENTE">GERENTE</option>
-                    </select>
+                            <option value="CAJERO">CAJERO</option>
+                            <option value="CLIENTE">CLIENTE</option>
+                            <option value="GERENTE">GERENTE</option>
+                        </select>
                     </div>
                     <input class="btn  btn-outline-secondary btn-block" value="Validar" type="submit">
                 </form>
@@ -76,6 +77,10 @@
             %>
         </tbody>
     </table>
+    <form method="POST" action="../../saveManagerHistory">
+        <input type="hidden" value="<%=nameEntity%>" name="nameEntity"/>
+        <input type="submit" value="Exportar"/>        
+    </form>
     <%}%>
-    </body>
+</body>
 </html>

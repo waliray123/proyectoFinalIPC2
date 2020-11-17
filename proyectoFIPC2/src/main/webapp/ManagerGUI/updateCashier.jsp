@@ -87,6 +87,10 @@
                         <script>
                             alert("Se actualizo el cajero con codigo: <%=codeCashier%>");
                         </script>
+                    <%}else{%>
+                        <script>
+                            alert("Ha ocurrido un error vuelva a intentarlo");
+                        </script>
                     <%}
                 }
             }
@@ -103,7 +107,7 @@
             <div class="col-md-6" >
                 <form>
                     <div class="form-group">
-                        Codigo Cajero*<input type="text" class="form-control" placeholder="Codigo *" value="" name="codeC"/>
+                        Codigo Cajero*<input type="text" class="form-control" placeholder="Codigo *" value="" name="codeC" required/>
                     </div>
                     <input class="btn  btn-outline-secondary btn-block" type="submit"/>
                 </form>
@@ -129,16 +133,16 @@
                     <div class="row register-form">
                         <div class="col-md-6">
                             <div class="form-group">
-                                Nombre*<input type="text" class="form-control" placeholder="Nombre *" value="<%=name%>" name="name"/>
+                                Nombre*<input type="text" class="form-control" placeholder="Nombre *" value="<%=name%>" name="name" required/>
                             </div>
                             <div class="form-group">
-                                DPI*<input type="text" class="form-control" placeholder="DPI *" value="<%=DPI%>" name="DPI"/>
+                                DPI*<input type="text" class="form-control" placeholder="DPI *" value="<%=DPI%>" name="DPI" maxlength="13" required/>
                             </div>                                
                             <div class="form-group">
-                                Contrasena*<input type="password" class="form-control" placeholder="Password *" value="<%=password%>" name="passClient"/>
+                                Contrasena*<input type="password" class="form-control" placeholder="Password *" value="<%=password%>" name="passClient" required/>
                             </div>
                             <div class="form-group">
-                                <div class="maxl" name="gender">
+                                <div class="maxl">
                                     <label class="radio inline">                                     
                                         <input type="radio" name="gender" value="Masculino" <%=mas%>/>
                                         <span> Masculino </span> 
@@ -159,7 +163,7 @@
                                 </select>
                             </div>
                             <div class="form-group">
-                                Direccion*<input type="text" class="form-control" placeholder="Direccion *" value="<%=address%>" name="address"/>
+                                Direccion*<input type="text" class="form-control" placeholder="Direccion *" value="<%=address%>" name="address" required/>
                             </div>       
                             <input type="hidden" name="codeCashier" value="<%=codeCashier%>">
                             <center>                                

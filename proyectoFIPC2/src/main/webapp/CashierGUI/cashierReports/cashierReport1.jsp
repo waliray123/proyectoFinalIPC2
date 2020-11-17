@@ -52,7 +52,7 @@
                 <td><%=transaction.getBalanceT()%></td>
             </tr>            
             <%  cont++;
-                balanceTotal = transaction.getBalanceT();
+                    balanceTotal = transaction.getBalanceT();
                 }
             %>
             <tr>
@@ -62,5 +62,9 @@
             </tr>
         </tbody>
     </table>
+    <form method="GET" action="../../saveTransactionBalance">
+        <input type="hidden" value="<%=balanceTotal%>" name="total"/>
+        <input type="submit" value="Exportar"/>        
+    </form>
 </body>
 </html>

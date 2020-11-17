@@ -11,7 +11,9 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">               
+        <link rel="stylesheet"  href="/proyectoFIPC2/css/customCSS.css">
+        <link rel="stylesheet"  href="/proyectoFIPC2/css/bootstrap.css">
         <title>Reporte 4 gerente</title>
     </head>
     <body>
@@ -56,5 +58,8 @@
             %>
         </tbody>
     </table>
+    <form method="GET" action="../../saveClientT">
+        <input type="submit" value="Exportar"/>        
+    </form>
     </body>
 </html>

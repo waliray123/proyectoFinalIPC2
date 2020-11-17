@@ -105,13 +105,13 @@
                             Nombre*<input type="text" class="form-control" placeholder="Nombre *" value="<%=name%>" name="name"/>
                         </div>
                         <div class="form-group">
-                            DPI*<input type="text" class="form-control" placeholder="DPI *" value="<%=DPI%>" name="DPI"/>
+                            DPI*<input type="text" class="form-control" placeholder="DPI *" value="<%=DPI%>" name="DPI" maxlength="13"/>
                         </div>                                
                         <div class="form-group">
                             Contrasena*<input type="password" class="form-control" placeholder="Password *" value="<%=password%>" name="passClient"/>
                         </div>
                         <div class="form-group">
-                            <div class="maxl" name="gender">
+                            <div class="maxl" >
                                 <label class="radio inline">                                     
                                     <input type="radio" name="gender" value="Masculino" <%=mas%>/>
                                     <span> Masculino </span> 

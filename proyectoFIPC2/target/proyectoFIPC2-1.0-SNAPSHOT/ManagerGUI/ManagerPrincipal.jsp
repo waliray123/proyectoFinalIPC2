@@ -52,7 +52,7 @@
                             <center>
                                 <h3 class="card-title">Registrar Cliente</h3>
                                 <p class="card-text">Registrar a un cliente en el sistema</p>
-                                <a class="btn btn-light btn-outline-dark <%=isInHour%>" <%=isInHour%> href="/proyectoFIPC2/ManagerGUI/registerClient.jsp" title="Read more" ><img src="/proyectoFIPC2/images/cuenta.png" alt="x" width="25" height="25"/> Registrar</a>
+                                <a class="btn btn-light btn-outline-dark <%//=isInHour%>" href="/proyectoFIPC2/ManagerGUI/registerClient.jsp" title="Read more" ><img src="/proyectoFIPC2/images/cuenta.png" alt="x" width="25" height="25"/> Registrar</a>
                             </center>
                         </div>
                     </div>
@@ -69,7 +69,7 @@
                     </div>
                 </div>
             </div>
-            <br><br>
+            <br>
             <div class="row">
                 <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 col-xl-4">
                     <div class="card">
@@ -103,8 +103,34 @@
                             </center>
                         </div>
                     </div>
+                </div>                                            
+            </div>
+            <br>
+            <div class="row">
+                <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 col-xl-4">
+                    <div class="card">
+                        <div class="backC-1 borderR">
+                            <center>
+                                <h3 class="card-title">Registrar Cajero</h3>
+                                <p class="card-text">Regitrar a un cajero en el sistema</p>
+                                <a class="btn btn-light btn-outline-dark <%//=isInHour%>" href="/proyectoFIPC2/ManagerGUI/createCashier.jsp" title="Read more" ><img src="/proyectoFIPC2/images/registro.png" alt="x" width="25" height="25"/> Actualizar</a>
+                            </center>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 col-xl-4">
+                    <div class="card">
+                        <div class="backC-2 borderR">
+                            <center>
+                                <h3 class="card-title">Registrar Gerente</h3>
+                                <p class="card-text">Regitrar a un Gerente en el sistema</p>
+                                <a class="btn btn-light btn-outline-dark <%//=isInHour%>" href="/proyectoFIPC2/ManagerGUI/createManager.jsp" title="Read more" ><img src="/proyectoFIPC2/images/registro.png" alt="x" width="25" height="25"/> Actualizar</a>
+                            </center>
+                        </div>
+                    </div>
                 </div>
             </div>
+
         </div>
     </section>    
     <br>
@@ -120,7 +146,7 @@
                             <center>
                                 <h3 class="card-title">Reporte 1</h3>
                                 <p class="card-text">Historial de cambios realizados en la información de una entidad en específico</p>
-                                <a class="btn btn-light btn-outline-dark" href="/proyectoFIPC2/ManagerGUI/createAccount.jsp" title="Read more" ><img src="/proyectoFIPC2/images/reporte.png" alt="x" width="25" height="25"/> Crear </a>
+                                <a class="btn btn-light btn-outline-dark" href="/proyectoFIPC2/ManagerGUI/Reports/managerReport1.jsp" title="Read more" ><img src="/proyectoFIPC2/images/reporte.png" alt="x" width="25" height="25"/> Crear </a>
                             </center>
                         </div>
                     </div>
@@ -131,7 +157,7 @@
                             <center>
                                 <h3 class="card-title">Reporte 2</h3>
                                 <p class="card-text">Clientes con transacciones monetarias mayores a un límite establecido.</p>
-                                <a class="btn btn-light btn-outline-dark" href="/proyectoFIPC2/ManagerGUI/createAccount.jsp" title="Read more" ><img src="/proyectoFIPC2/images/reporte.png" alt="x" width="25" height="25"/> Crear </a>
+                                <a class="btn btn-light btn-outline-dark" href="/proyectoFIPC2/ManagerGUI/Reports/managerReport2.jsp" title="Read more" ><img src="/proyectoFIPC2/images/reporte.png" alt="x" width="25" height="25"/> Crear </a>
                             </center>
                         </div>
                     </div>
@@ -142,7 +168,7 @@
                             <center>
                                 <h3 class="card-title">Reporte 3</h3>
                                 <p class="card-text">Clientes con transacciones monetarias sumadas mayores a un límite establecido.</p>
-                                <a class="btn btn-light btn-outline-dark" href="/proyectoFIPC2/ManagerGUI/createAccount.jsp" title="Read more" ><img src="/proyectoFIPC2/images/reporte.png" alt="x" width="25" height="25"/> Crear </a>
+                                <a class="btn btn-light btn-outline-dark" href="/proyectoFIPC2/ManagerGUI/Reports/managerReport3.jsp" title="Read more" ><img src="/proyectoFIPC2/images/reporte.png" alt="x" width="25" height="25"/> Crear </a>
                             </center>
                         </div>
                     </div>
@@ -153,7 +179,7 @@
                             <center>
                                 <h3 class="card-title">Reporte 4</h3>
                                 <p class="card-text">Los 10 clientes con más dinero en sus cuentas.</p>
-                                <a class="btn btn-light btn-outline-dark" href="/proyectoFIPC2/ManagerGUI/createAccount.jsp" title="Read more" ><img src="/proyectoFIPC2/images/reporte.png" alt="x" width="25" height="25"/> Crear </a>
+                                <a class="btn btn-light btn-outline-dark" href="/proyectoFIPC2/ManagerGUI/Reports/managerReport4.jsp" title="Read more" ><img src="/proyectoFIPC2/images/reporte.png" alt="x" width="25" height="25"/> Crear </a>
                             </center>
                         </div>
                     </div>
@@ -167,7 +193,7 @@
                             <center>
                                 <h3 class="card-title">Reporte 5</h3>
                                 <p class="card-text">Clientes que no han realizado transacciones dentro de un intervalo de tiempo</p>
-                                <a class="btn btn-light btn-outline-dark" href="/proyectoFIPC2/ManagerGUI/createAccount.jsp" title="Read more" ><img src="/proyectoFIPC2/images/reporte.png" alt="x" width="25" height="25"/> Crear </a>
+                                <a class="btn btn-light btn-outline-dark" href="/proyectoFIPC2/ManagerGUI/Reports/managerReport5.jsp" title="Read more" ><img src="/proyectoFIPC2/images/reporte.png" alt="x" width="25" height="25"/> Crear </a>
                             </center>
                         </div>
                     </div>
@@ -178,7 +204,7 @@
                             <center>
                                 <h3 class="card-title">Reporte 6</h3>
                                 <p class="card-text">Historial de transacciones por cliente</p>
-                                <a class="btn btn-light btn-outline-dark" href="/proyectoFIPC2/ManagerGUI/createAccount.jsp" title="Read more" ><img src="/proyectoFIPC2/images/reporte.png" alt="x" width="25" height="25"/> Crear </a>
+                                <a class="btn btn-light btn-outline-dark" href="/proyectoFIPC2/ManagerGUI/Reports/managerReport6.jsp" title="Read more" ><img src="/proyectoFIPC2/images/reporte.png" alt="x" width="25" height="25"/> Crear </a>
                             </center>
                         </div>
                     </div>
@@ -189,7 +215,7 @@
                             <center>
                                 <h3 class="card-title">Reporte 7</h3>
                                 <p class="card-text">Cajero que más transacciones ha realizado en un intervalo de tiempo.</p>
-                                <a class="btn btn-light btn-outline-dark" href="/proyectoFIPC2/ManagerGUI/createAccount.jsp" title="Read more" ><img src="/proyectoFIPC2/images/reporte.png" alt="x" width="25" height="25"/> Crear </a>
+                                <a class="btn btn-light btn-outline-dark" href="/proyectoFIPC2/ManagerGUI/Reports/managerReport7.jsp" title="Read more" ><img src="/proyectoFIPC2/images/reporte.png" alt="x" width="25" height="25"/> Crear </a>
                             </center>
                         </div>
                     </div>
